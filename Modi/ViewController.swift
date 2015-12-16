@@ -159,7 +159,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
             token = datosSesion[6] as! String
             if token != "false" {
                 if datosSesion[1] as! String == "guest" { invitado = true }
-                progressBarDisplayer("Descargando", true)
+                progressBarDisplayer("Iniciando", true)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.performSegueWithIdentifier("LoginSegue", sender: self)
                 }
@@ -211,7 +211,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     @IBAction func LogInAction(sender: AnyObject) {
         /*ActivityIndicator.hidden = false
         ActivityIndicator.startAnimating()*/
-        progressBarDisplayer("Descargando", true)
+        progressBarDisplayer("Iniciando", true)
         let connectDB = ConnectDB()
         //connectDB.addSession(databasePath, id: 1, nombre: UsuarioTextField.text, fecha: "2013-06-02")
         connectDB.checkSession(databasePath as String)
@@ -248,7 +248,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                 print("Login: \(responseDictionary["token"]!.stringValue)")
                                 self.performSegueWithIdentifier("LoginSegue", sender: self)
                             } else {
-                                self.progressBarDisplayer("Descargando", false)
+                                self.progressBarDisplayer("Iniciando", false)
                                 self.ContrasenaTextField.text = ""
                                 /*self.ActivityIndicator.hidden = true
                                 self.ActivityIndicator.stopAnimating()*/
@@ -397,7 +397,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                                         UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
                                                         self.performSegueWithIdentifier("LoginSegue", sender: self)
                                                     } else {
-                                                        self.progressBarDisplayer("Descargando", false)
+                                                        self.progressBarDisplayer("Iniciando", false)
                                                         print("Error de login con Twitter")
                                                         let optionAlert = UIAlertController(title: "Error", message: "Servidor de Twiiter no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                                         optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
@@ -509,7 +509,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                                     UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
                                                     self.performSegueWithIdentifier("LoginSegue", sender: self)
                                                 } else {
-                                                    self.progressBarDisplayer("Descargando", false)
+                                                    self.progressBarDisplayer("Iniciando", false)
                                                     print("Error de login con Twitter")
                                                     let optionAlert = UIAlertController(title: "Error", message: "Servidor de Twiiter no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                                     optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
@@ -551,7 +551,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     
     //MARK: G+
     func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        self.progressBarDisplayer("Descargando", true)
+        self.progressBarDisplayer("Iniciando", true)
         signIn = GPPSignIn.sharedInstance()
         self.nombre = signIn!.googlePlusUser.displayName
         self.id = signIn!.googlePlusUser.identifier
@@ -617,7 +617,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                             UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
                                             self.performSegueWithIdentifier("LoginSegue", sender: self)
                                         } else {
-                                            self.progressBarDisplayer("Descargando", false)
+                                            self.progressBarDisplayer("Iniciando", false)
                                             print("Error de login con Twitter")
                                             let optionAlert = UIAlertController(title: "Error", message: "Servidor no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                             optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
@@ -653,7 +653,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     }
     @IBAction func InvitadoAction(sender: AnyObject) {
         invitado = true
-        progressBarDisplayer("Descargando", true)
+        progressBarDisplayer("Iniciando", true)
         let connectDB = ConnectDB()
         //connectDB.addSession(databasePath, id: 1, nombre: UsuarioTextField.text, fecha: "2013-06-02")
         connectDB.checkSession(databasePath as String)
@@ -686,7 +686,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                             print("Login: \(responseDictionary["token"]!.stringValue)")
                             self.performSegueWithIdentifier("LoginSegue", sender: self)
                         } else {
-                            self.progressBarDisplayer("Descargando", false)
+                            self.progressBarDisplayer("Iniciando", false)
                             self.ContrasenaTextField.text = ""
                             /*self.ActivityIndicator.hidden = true
                             self.ActivityIndicator.stopAnimating()*/

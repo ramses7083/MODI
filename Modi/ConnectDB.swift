@@ -293,65 +293,29 @@ class ConnectDB: NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request
     }
-    func getProfile(token: String) -> JSON {
+    func getProfile(token: String) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: "http://modi.mx/api/app-profiles/")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
-        var response: NSURLResponse?
-        var respuestaServidor : JSON!
         request.HTTPMethod = "GET"
         request.addValue("Token \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //obtener respuesta del servidor
-        let urlData: NSData?
-        do {
-            urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-        } catch let error1 as NSError {
-            //error = error1
-            print(error1)
-            urlData = nil
-        }
-        respuestaServidor = JSON(data: urlData!, options: [], error: nil)
-        return respuestaServidor
+        return request
     }
-    func getPopular(token: String) -> JSON {
+    func getPopular(token: String) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: "http://modi.mx/api/popular-restaurants/")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
-        var response: NSURLResponse?
-        var respuestaServidor : JSON!
         request.HTTPMethod = "GET"
         request.addValue("Token \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //obtener respuesta del servidor
-        let urlData: NSData?
-        do {
-            urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-        } catch let error1 as NSError {
-            //error = error1
-            print(error1)
-            urlData = nil
-        }
-        respuestaServidor = JSON(data: urlData!, options: [], error: nil)
-        return respuestaServidor
+        return request
     }
-    func getCategories(token: String) -> JSON {
+    func getCategories(token: String) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: "http://modi.mx/api/restaurantcategories/")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
-        var response: NSURLResponse?
-        var respuestaServidor : JSON!
         request.HTTPMethod = "GET"
         request.addValue("Token \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //obtener respuesta del servidor
-        let urlData: NSData?
-        do {
-            urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-        } catch let error1 as NSError {
-            //error = error1
-            print(error1)
-            urlData = nil
-        }
-        respuestaServidor = JSON(data: urlData!, options: [], error: nil)
-        return respuestaServidor
+        return request
     }
     func getImage(imgURL: NSURL) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: imgURL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)

@@ -47,7 +47,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var RestaurantesLat: [[String]] = []
     var RestaurantesLong: [[String]] = []
     var favoritosStatus = false
-    
+    var alert = UIAlertController(title: "Sin conexión", message: "Verifica tu conexión a Internet", preferredStyle: UIAlertControllerStyle.Alert)
     var contentsOffsetDictionary: NSMutableDictionary!
 
     override func viewDidLoad() {
@@ -59,24 +59,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         token = datosSesion[6] as! String
         print("tokenization:\(token)")
 
-        //Personalizar el TabBarController
-        
-        // Editar SeaarchTextField
-        /*SearchTextField.layer.borderWidth = 3.0
-        SearchTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
-        */
+ 
         // Editar TableView
         FoodTableView.rowHeight = 114
-        
-        
-        
-        // Editar el header
-        // Las siguientes lineas estan comentadas porque se configuro el navigationController en 
-        /*let headerColor = UIColor(red: 55.0/255.0, green: 29.0/255.0, blue: 75.0/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.barTintColor = headerColor
-        self.navigationController?.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]*/
-        //self.navigationItem.title = "Búsqueda"
         self.navigationItem.leftBarButtonItem?.title = "atras"
             
         downloadData()
@@ -94,6 +79,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         refreshControl.addTarget(self, action: "UpdateTable:", forControlEvents: .ValueChanged)
     }
     func downloadData() {
+        self.progressBarDisplayer("Descargando", true)
         //Limpiar variables
         RestaurantesID = []
         Restaurantes = []
@@ -120,257 +106,249 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Editar TableView
         FoodTableView.rowHeight = 114
         
-        //Obtener perfil
-        profile = ConnectDB().getProfile(token)
-        //print(profile[0]["favrestaurants"])
-        //Obtener populares
-        populares = ConnectDB().getPopular(token)
-        //print(populares)
-        //Obtener categorias
-        categoriasTemp = ConnectDB().getCategories(token)
-        print(categoriasTemp)
-        categorias = categoriasTemp
-    
         var cont = 0
-        
-        for var cc=0; cc<profile[0]["favrestaurants"].count ; cc++ {
-            if cc == 0 {
-                RestaurantesID.append([profile[0]["favrestaurants"][cc]["id"].stringValue])
-                Restaurantes.append([profile[0]["favrestaurants"][cc]["nombre"].stringValue])
-                RestaurantesCalles.append([profile[0]["favrestaurants"][cc]["calle"].stringValue])
-                RestaurantesModiCliente.append([profile[0]["favrestaurants"][cc]["posClient"].boolValue])
-                RestaurantesLogosURL.append([profile[0]["favrestaurants"][cc]["logo"].stringValue])
-                RestaurantesLogos.append(["\(profile[0]["favrestaurants"][cc]["id"].stringValue).png"])
-                let geopin = profile[0]["favrestaurants"][cc]["geopin"].stringValue
-                let geopinArr = geopin.componentsSeparatedByString(",")
-                RestaurantesLat.append([geopinArr[0]])
-                RestaurantesLong.append([geopinArr[1]])
-                cont += 1
+        let request = ConnectDB().getProfile(token)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            if error != nil {
+                // handle error here
+                 dispatch_async(dispatch_get_main_queue()) {
+                    self.progressBarDisplayer("Descargando", false)
+                    self.presentViewController(self.alert, animated: true, completion: nil)
+                    NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("dismissAlert"), userInfo: nil, repeats: false)
+                  }
                 
-                
-                // Guardar imagen
-                /*
-                if restaurantesPorCatTem[cc]["logo"].stringValue == "" { url = NSURL(string: "http://modi.mx/media/images/orange_tapas_bar_LOGO.jpg")}
-                else {url = NSURL(string: restaurantesPorCatTem[cc]["logo"].stringValue)}
-                let data:NSData = NSData(contentsOfURL: url!)!
-                let image = UIImage(data: data)
-                let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-                let imagePath = paths.stringByAppendingPathComponent("\(restaurantesPorCatTem[cc]["id"].stringValue).png" )
-                UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                print("Guardo foto 0")
-                */
-            } else {
-                RestaurantesID[0].append(profile[0]["favrestaurants"][cc]["id"].stringValue)
-                Restaurantes[0].append(profile[0]["favrestaurants"][cc]["nombre"].stringValue)
-                RestaurantesCalles[0].append(profile[0]["favrestaurants"][cc]["calle"].stringValue)
-                RestaurantesModiCliente[0].append(profile[0]["favrestaurants"][cc]["posClient"].boolValue)
-                RestaurantesLogosURL[0].append(profile[0]["favrestaurants"][cc]["logo"].stringValue)
-                RestaurantesLogos[0].append("\(profile[0]["favrestaurants"][cc]["id"].stringValue).png")
-                let geopin = profile[0]["favrestaurants"][cc]["geopin"].stringValue
-                let geopinArr = geopin.componentsSeparatedByString(",")
-                RestaurantesLat[0].append(geopinArr[0])
-                RestaurantesLong[0].append(geopinArr[1])
-                
-                // Guardar imagen
-                /*
-                if restaurantesPorCatTem[cc]["logo"].stringValue == "" { url = NSURL(string: "http://modi.mx/media/images/orange_tapas_bar_LOGO.jpg")}
-                else {url = NSURL(string: restaurantesPorCatTem[cc]["logo"].stringValue)}
-                let data:NSData = NSData(contentsOfURL: url!)!
-                let image = UIImage(data: data)
-                let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-                let imagePath = paths.stringByAppendingPathComponent("\(restaurantesPorCatTem[cc]["id"].stringValue).png")
-                UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                print("Guardo foto 1")
-                */
+                print("Error al principio")
+                print(error)
+                return
             }
-        }
-        
-        //Guardar populares en el array
-        for var cc=0; cc<populares.count ; cc++ {
-            if cc == 0 {
-                RestaurantesID.append([populares[cc]["id"].stringValue])
-                Restaurantes.append([populares[cc]["nombre"].stringValue])
-                RestaurantesCalles.append([populares[cc]["calle"].stringValue])
-                RestaurantesModiCliente.append([populares[cc]["posClient"].boolValue])
-                RestaurantesLogosURL.append([populares[cc]["logo"].stringValue])
-                RestaurantesLogos.append(["\(populares[cc]["id"].stringValue).png"])
-                let geopin = populares[cc]["geopin"].stringValue
-                let geopinArr = geopin.componentsSeparatedByString(",")
-                RestaurantesLat.append([geopinArr[0]])
-                RestaurantesLong.append([geopinArr[1]])
-                cont += 1
-                
-                // Guardar imagen
-                /*
-                if restaurantesPorCatTem[cc]["logo"].stringValue == "" { url = NSURL(string: "http://modi.mx/media/images/orange_tapas_bar_LOGO.jpg")}
-                else {url = NSURL(string: restaurantesPorCatTem[cc]["logo"].stringValue)}
-                let data:NSData = NSData(contentsOfURL: url!)!
-                let image = UIImage(data: data)
-                let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-                let imagePath = paths.stringByAppendingPathComponent("\(restaurantesPorCatTem[cc]["id"].stringValue).png" )
-                UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                print("Guardo foto 0")
-                */
-            } else {
-                RestaurantesID[cont-1].append(populares[cc]["id"].stringValue)
-                Restaurantes[cont-1].append(populares[cc]["nombre"].stringValue)
-                RestaurantesCalles[cont-1].append(populares[cc]["calle"].stringValue)
-                RestaurantesModiCliente[cont-1].append(populares[cc]["posClient"].boolValue)
-                RestaurantesLogosURL[cont-1].append(populares[cc]["logo"].stringValue)
-                RestaurantesLogos[cont-1].append("\(populares[cc]["id"].stringValue).png")
-                let geopin = populares[cc]["geopin"].stringValue
-                let geopinArr = geopin.componentsSeparatedByString(",")
-                RestaurantesLat[cont-1].append(geopinArr[0])
-                RestaurantesLong[cont-1].append(geopinArr[1])
-                
-                // Guardar imagen
-                /*
-                if restaurantesPorCatTem[cc]["logo"].stringValue == "" { url = NSURL(string: "http://modi.mx/media/images/orange_tapas_bar_LOGO.jpg")}
-                else {url = NSURL(string: restaurantesPorCatTem[cc]["logo"].stringValue)}
-                let data:NSData = NSData(contentsOfURL: url!)!
-                let image = UIImage(data: data)
-                let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-                let imagePath = paths.stringByAppendingPathComponent("\(restaurantesPorCatTem[cc]["id"].stringValue).png")
-                UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                print("Guardo foto 1")
-                */
-            }
-        }
-        
-        // Obtener restaurantes por categoria
-        for var c = 0; c<categorias.count; c++ {
-            //let restaurantesPorCatTem = ConnectDB().getRestaurantsByCategory(token, id: categorias[c]["id"].stringValue)
-            //print("Restaurantes de cat: \(categorias[c]["id"].stringValue) = \(restaurantesPorCatTem)")
-            for var cc=0; cc<categorias[c]["restaurants"].count ; cc++ {
-                if cc == 0 {
-                    RestaurantesID.append([categorias[c]["restaurants"][cc]["id"].stringValue])
-                    Restaurantes.append([categorias[c]["restaurants"][cc]["nombre"].stringValue])
-                    RestaurantesCalles.append([categorias[c]["restaurants"][cc]["calle"].stringValue])
-                    RestaurantesModiCliente.append([categorias[c]["restaurants"][cc]["posClient"].boolValue])
-                    RestaurantesLogosURL.append([categorias[c]["restaurants"][cc]["logo"].stringValue])
-                    RestaurantesLogos.append(["\(categorias[c]["restaurants"][cc]["id"].stringValue).png"])
-                    let geopin = categorias[c]["restaurants"][cc]["geopin"].stringValue
-                    let geopinArr = geopin.componentsSeparatedByString(",")
-                    RestaurantesLat.append([geopinArr[0]])
-                    RestaurantesLong.append([geopinArr[1]])
-                    
-                    // Guardar imagen
-                    /*
-                    if restaurantesPorCatTem[cc]["logo"].stringValue == "" { url = NSURL(string: "http://modi.mx/media/images/orange_tapas_bar_LOGO.jpg")}
-                    else {url = NSURL(string: restaurantesPorCatTem[cc]["logo"].stringValue)}
-                    let data:NSData = NSData(contentsOfURL: url!)!
-                    let image = UIImage(data: data)
-                    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-                    let imagePath = paths.stringByAppendingPathComponent("\(restaurantesPorCatTem[cc]["id"].stringValue).png" )
-                    UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                    print("Guardo foto 0")
-                    */
-                } else {
-                    RestaurantesID[c+cont].append(categorias[c]["restaurants"][cc]["id"].stringValue)
-                    Restaurantes[c+cont].append(categorias[c]["restaurants"][cc]["nombre"].stringValue)
-                    RestaurantesCalles[c+cont].append(categorias[c]["restaurants"][cc]["calle"].stringValue)
-                    RestaurantesModiCliente[c+cont].append(categorias[c]["restaurants"][cc]["posClient"].boolValue)
-                    RestaurantesLogosURL[c+cont].append(categorias[c]["restaurants"][cc]["logo"].stringValue)
-                    RestaurantesLogos[c+cont].append("\(categorias[c]["restaurants"][cc]["id"].stringValue).png")
-                    let geopin = categorias[c]["restaurants"][cc]["geopin"].stringValue
-                    let geopinArr = geopin.componentsSeparatedByString(",")
-                    RestaurantesLat[c+cont].append(geopinArr[0])
-                    RestaurantesLong[c+cont].append(geopinArr[1])
-                    
-                    // Guardar imagen
-                    /*
-                    if restaurantesPorCatTem[cc]["logo"].stringValue == "" { url = NSURL(string: "http://modi.mx/media/images/orange_tapas_bar_LOGO.jpg")}
-                    else {url = NSURL(string: restaurantesPorCatTem[cc]["logo"].stringValue)}
-                    let data:NSData = NSData(contentsOfURL: url!)!
-                    let image = UIImage(data: data)
-                    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-                    let imagePath = paths.stringByAppendingPathComponent("\(restaurantesPorCatTem[cc]["id"].stringValue).png")
-                    UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                    print("Guardo foto 1")
-                    */
-                }
-            }
-        }
-        
-        for var c = 0; c < categorias.count; c++ {
-            if c == 0 {
-                if cont == 2 { categoriasTodas.append("Favoritos") }
-                categoriasTodas.append("Populares")
-                categoriasTodas.append(categorias[c]["name"].stringValue)
-            } else {
-                categoriasTodas.append(categorias[c]["name"].stringValue)
-            }
-        }
-        
-        
-        //print("Datos de API restaurantes: \(Restaurants)")
-        //let temp = Restaurants.count
-        //print("Restauran: \(temp)")
-        //println("Restauran: \(Restaurants)")
-        
-        //Obtener datos del menu
-        /*
-        var menu = ConnectDB().getMenu(1)
-        var temp2 = menu[0]["menu"].string
-        var temp3 = JSON(temp2!)
-        var temp4 = temp3["idCategoria"]
-        temp = temp3.count
-        println("Menu: \(temp4)")
-        //println("Menu: \(menu)")
-        */
-        // Obtener localizacón del usu ario
-        locationManager =  CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        if (self.locationManager.location != nil){
-            let location = self.locationManager.location
-            let latitude: Double = location!.coordinate.latitude
-            let longitude: Double = location!.coordinate.longitude
             
-            print("Latitud actual :: \(latitude)")
-            print("Longitud actual :: \(longitude)")
+            // if response was JSON, then parse it
             
-            let latDelta:CLLocationDegrees = 0.04
-            let longDelta:CLLocationDegrees = 0.04
-            let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-            let region:MKCoordinateRegion = MKCoordinateRegionMake((locationManager.location?.coordinate)!, theSpan)
-            self.SearchMapView.setRegion(region, animated: true)
-        }
-        self.SearchMapView.showsUserLocation = true
-        self.SearchMapView.mapType = MKMapType.Standard
-        
-        // Generar los Pines de los restaurantes
-        SearchMapView.delegate = self
-        for var x = 0; x < Restaurantes.count; x++
-        {//print("Entro a X")
-            for var y = 0; y < Restaurantes[x].count; y++
-            {//print("Entro a y")
-                var ban = false
-                for var z = 0; z < RestaurantesPineados.count; z++
-                {
-                    if RestaurantesID[x][y] == RestaurantesPineados[z] {
-                        ban = true
+            do {
+                self.profile = JSON(data: data!, options: [], error: nil)
+                print("success profile con JSON == \(self.profile)")
+                dispatch_async(dispatch_get_main_queue()) {
+                    //     // update your UI and model objects here
+                    let request = ConnectDB().getPopular(self.token)
+                    let task2 = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                        if error != nil {
+                            // handle error here
+                            print("Error al principio")
+                            print(error)
+                            return
+                        }
+                        
+                        // if response was JSON, then parse it
+                        
+                        do {
+                            self.populares = JSON(data: data!, options: [], error: nil)
+                            print("success popular con JSON == \(self.populares)")
+                            dispatch_async(dispatch_get_main_queue()) {
+                                //     // update your UI and model objects here
+                                let request = ConnectDB().getCategories(self.token)
+                                let task3 = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                                    if error != nil {
+                                        // handle error here
+                                        print("Error al principio")
+                                        print(error)
+                                        return
+                                    }
+                                    
+                                    // if response was JSON, then parse it
+                                    
+                                    do {
+                                        self.categorias = JSON(data: data!, options: [], error: nil)
+                                        print("success todos con JSON == \(self.categorias)")
+                                            
+                                            // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
+                                            //
+                                            dispatch_async(dispatch_get_main_queue()) {
+                                                //     // update your UI and model objects here
+                                                for var cc=0; cc<self.profile[0]["favrestaurants"].count ; cc++ {
+                                                    if cc == 0 {
+                                                        self.RestaurantesID.append([self.profile[0]["favrestaurants"][cc]["id"].stringValue])
+                                                        self.Restaurantes.append([self.profile[0]["favrestaurants"][cc]["nombre"].stringValue])
+                                                        self.RestaurantesCalles.append([self.profile[0]["favrestaurants"][cc]["calle"].stringValue])
+                                                        self.RestaurantesModiCliente.append([self.profile[0]["favrestaurants"][cc]["posClient"].boolValue])
+                                                        self.RestaurantesLogosURL.append([self.profile[0]["favrestaurants"][cc]["logo"].stringValue])
+                                                        self.RestaurantesLogos.append(["\(self.profile[0]["favrestaurants"][cc]["id"].stringValue).png"])
+                                                        let geopin = self.profile[0]["favrestaurants"][cc]["geopin"].stringValue
+                                                        let geopinArr = geopin.componentsSeparatedByString(",")
+                                                        self.RestaurantesLat.append([geopinArr[0]])
+                                                        self.RestaurantesLong.append([geopinArr[1]])
+                                                        cont += 1
+                                    
+                                                    } else {
+                                                        self.RestaurantesID[0].append(self.profile[0]["favrestaurants"][cc]["id"].stringValue)
+                                                        self.Restaurantes[0].append(self.profile[0]["favrestaurants"][cc]["nombre"].stringValue)
+                                                        self.RestaurantesCalles[0].append(self.profile[0]["favrestaurants"][cc]["calle"].stringValue)
+                                                        self.RestaurantesModiCliente[0].append(self.profile[0]["favrestaurants"][cc]["posClient"].boolValue)
+                                                        self.RestaurantesLogosURL[0].append(self.profile[0]["favrestaurants"][cc]["logo"].stringValue)
+                                                        self.RestaurantesLogos[0].append("\(self.profile[0]["favrestaurants"][cc]["id"].stringValue).png")
+                                                        let geopin = self.profile[0]["favrestaurants"][cc]["geopin"].stringValue
+                                                        let geopinArr = geopin.componentsSeparatedByString(",")
+                                                        self.RestaurantesLat[0].append(geopinArr[0])
+                                                        self.RestaurantesLong[0].append(geopinArr[1])
+                                                        
+                                                    }
+                                                }
+                                                
+                                                //Guardar populares en el array
+                                                for var cc=0; cc<self.populares.count ; cc++ {
+                                                    if cc == 0 {
+                                                        self.RestaurantesID.append([self.populares[cc]["id"].stringValue])
+                                                        self.Restaurantes.append([self.populares[cc]["nombre"].stringValue])
+                                                        self.RestaurantesCalles.append([self.populares[cc]["calle"].stringValue])
+                                                        self.RestaurantesModiCliente.append([self.populares[cc]["posClient"].boolValue])
+                                                        self.RestaurantesLogosURL.append([self.populares[cc]["logo"].stringValue])
+                                                        self.RestaurantesLogos.append(["\(self.populares[cc]["id"].stringValue).png"])
+                                                        let geopin = self.populares[cc]["geopin"].stringValue
+                                                        let geopinArr = geopin.componentsSeparatedByString(",")
+                                                        self.RestaurantesLat.append([geopinArr[0]])
+                                                        self.RestaurantesLong.append([geopinArr[1]])
+                                                        cont += 1
+                                
+                                                    } else {
+                                                        self.RestaurantesID[cont-1].append(self.populares[cc]["id"].stringValue)
+                                                        self.Restaurantes[cont-1].append(self.populares[cc]["nombre"].stringValue)
+                                                        self.RestaurantesCalles[cont-1].append(self.populares[cc]["calle"].stringValue)
+                                                        self.RestaurantesModiCliente[cont-1].append(self.populares[cc]["posClient"].boolValue)
+                                                        self.RestaurantesLogosURL[cont-1].append(self.populares[cc]["logo"].stringValue)
+                                                        self.RestaurantesLogos[cont-1].append("\(self.populares[cc]["id"].stringValue).png")
+                                                        let geopin = self.populares[cc]["geopin"].stringValue
+                                                        let geopinArr = geopin.componentsSeparatedByString(",")
+                                                        self.RestaurantesLat[cont-1].append(geopinArr[0])
+                                                        self.RestaurantesLong[cont-1].append(geopinArr[1])
+                                                    }
+                                                }
+                                                
+                                                // Obtener restaurantes por categoria
+                                                for var c = 0; c<self.categorias.count; c++ {
+                                                    for var cc=0; cc<self.categorias[c]["restaurants"].count ; cc++ {
+                                                        if cc == 0 {
+                                                            self.RestaurantesID.append([self.categorias[c]["restaurants"][cc]["id"].stringValue])
+                                                            self.Restaurantes.append([self.categorias[c]["restaurants"][cc]["nombre"].stringValue])
+                                                            self.RestaurantesCalles.append([self.categorias[c]["restaurants"][cc]["calle"].stringValue])
+                                                            self.RestaurantesModiCliente.append([self.categorias[c]["restaurants"][cc]["posClient"].boolValue])
+                                                            self.RestaurantesLogosURL.append([self.categorias[c]["restaurants"][cc]["logo"].stringValue])
+                                                            self.RestaurantesLogos.append(["\(self.categorias[c]["restaurants"][cc]["id"].stringValue).png"])
+                                                            let geopin = self.categorias[c]["restaurants"][cc]["geopin"].stringValue
+                                                            let geopinArr = geopin.componentsSeparatedByString(",")
+                                                            self.RestaurantesLat.append([geopinArr[0]])
+                                                            self.RestaurantesLong.append([geopinArr[1]])
+                                                        } else {
+                                                            self.RestaurantesID[c+cont].append(self.categorias[c]["restaurants"][cc]["id"].stringValue)
+                                                            self.Restaurantes[c+cont].append(self.categorias[c]["restaurants"][cc]["nombre"].stringValue)
+                                                            self.RestaurantesCalles[c+cont].append(self.categorias[c]["restaurants"][cc]["calle"].stringValue)
+                                                            self.RestaurantesModiCliente[c+cont].append(self.categorias[c]["restaurants"][cc]["posClient"].boolValue)
+                                                            self.RestaurantesLogosURL[c+cont].append(self.categorias[c]["restaurants"][cc]["logo"].stringValue)
+                                                            self.RestaurantesLogos[c+cont].append("\(self.categorias[c]["restaurants"][cc]["id"].stringValue).png")
+                                                            let geopin = self.categorias[c]["restaurants"][cc]["geopin"].stringValue
+                                                            let geopinArr = geopin.componentsSeparatedByString(",")
+                                                            self.RestaurantesLat[c+cont].append(geopinArr[0])
+                                                            self.RestaurantesLong[c+cont].append(geopinArr[1])
+                                                        }
+                                                    }
+                                                }
+                                                
+                                                for var c = 0; c < self.categorias.count; c++ {
+                                                    if c == 0 {
+                                                        if cont == 2 { self.categoriasTodas.append("Favoritos") }
+                                                        self.categoriasTodas.append("Populares")
+                                                        self.categoriasTodas.append(self.categorias[c]["name"].stringValue)
+                                                    } else {
+                                                        self.categoriasTodas.append(self.categorias[c]["name"].stringValue)
+                                                    }
+                                                }
+                                                // Obtener localizacón del usuario
+                                                self.locationManager =  CLLocationManager()
+                                                self.locationManager.delegate = self
+                                                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                                                self.locationManager.requestWhenInUseAuthorization()
+                                                self.locationManager.requestAlwaysAuthorization()
+                                                self.locationManager.startUpdatingLocation()
+                                                
+                                                if (self.locationManager.location != nil){
+                                                    let location = self.locationManager.location
+                                                    let latitude: Double = location!.coordinate.latitude
+                                                    let longitude: Double = location!.coordinate.longitude
+                                                    
+                                                    print("Latitud actual :: \(latitude)")
+                                                    print("Longitud actual :: \(longitude)")
+                                                    
+                                                    let latDelta:CLLocationDegrees = 0.04
+                                                    let longDelta:CLLocationDegrees = 0.04
+                                                    let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+                                                    let region:MKCoordinateRegion = MKCoordinateRegionMake((self.locationManager.location?.coordinate)!, theSpan)
+                                                    self.SearchMapView.setRegion(region, animated: true)
+                                                }
+                                                self.FoodTableView.reloadData()
+                                                self.SearchMapView.showsUserLocation = true
+                                                self.SearchMapView.mapType = MKMapType.Standard
+                                                
+                                                // Generar los Pines de los restaurantes
+                                                self.SearchMapView.delegate = self
+                                                for var x = 0; x < self.Restaurantes.count; x++
+                                                {//print("Entro a X")
+                                                    for var y = 0; y < self.Restaurantes[x].count; y++
+                                                    {//print("Entro a y")
+                                                        var ban = false
+                                                        for var z = 0; z < self.RestaurantesPineados.count; z++
+                                                        {
+                                                            if self.RestaurantesID[x][y] == self.RestaurantesPineados[z] {
+                                                                ban = true
+                                                            }
+                                                        }
+                                                        if !ban {
+                                                            //Crear pin del Restaurante
+                                                            // show artwork on map
+                                                            let latitud =  (self.RestaurantesLat[x][y] as NSString).doubleValue
+                                                            let longitud = (self.RestaurantesLong[x][y] as NSString).doubleValue
+                                                            let nartwork = NArtwork(title: "\(self.Restaurantes[x][y])",
+                                                                locationName: "\(self.RestaurantesCalles[x][y])",
+                                                                discipline: "\(x)",
+                                                                coordinate: CLLocationCoordinate2D(latitude:  latitud, longitude:  longitud))
+                                                            self.SearchMapView.addAnnotation(nartwork)
+                                                            self.RestaurantesPineados.append(self.RestaurantesID[x][y])
+                                                        }
+                                                    }
+                                                }
+                                                self.progressBarDisplayer("Descargando", false)
+                                            }
+                                        if let responseDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                                            print("success en SearchVC == \(responseDictionary)")
+                                            
+                                        }
+                                    } catch {
+                                        print(error)
+                                        
+                                        let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                                        print("responseString = \(responseString)")
+                                    }
+                                }
+                                task3.resume()
+                            }
+                            if let responseDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                                print("success en SearchVC == \(responseDictionary)")
+                            }
+                        } catch {
+                            print(error)
+                            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                            print("responseString = \(responseString)")
+                        }
                     }
+                    task2.resume()
                 }
-                if !ban {
-                    //Crear pin del Restaurante
-                    // show artwork on map
-                    let latitud =  (RestaurantesLat[x][y] as NSString).doubleValue
-                    let longitud = (RestaurantesLong[x][y] as NSString).doubleValue
-                    let nartwork = NArtwork(title: "\(Restaurantes[x][y])",
-                        locationName: "\(RestaurantesCalles[x][y])",
-                        discipline: "\(x)",
-                        coordinate: CLLocationCoordinate2D(latitude:  latitud, longitude:  longitud))
-                    SearchMapView.addAnnotation(nartwork)
-                    RestaurantesPineados.append(RestaurantesID[x][y])
+                if let responseDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    print("success en SearchVC == \(responseDictionary)")
                 }
+            } catch {
+                print(error)
+                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("responseString = \(responseString)")
             }
         }
-        
+        task.resume()
     }
     func UpdateTable(refreshControl: UIRefreshControl) {
         downloadData()
@@ -519,6 +497,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
+    func dismissAlert()
+    {
+        // Dismiss the alert from here
+        alert.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "RestaurantSelectedSegue") {
             let vc : RestaurantDetailViewController = segue.destinationViewController as! RestaurantDetailViewController
@@ -546,7 +531,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
     class NArtwork: NSObject, MKAnnotation {
         let title: String?
