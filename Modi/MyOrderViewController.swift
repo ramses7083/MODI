@@ -89,10 +89,12 @@ class MyOrderViewController: UIViewController, UITabBarDelegate, UITableViewData
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            print("articulo borrado con id: \(myorder[indexPath.row][0])")
             ConnectDB().deleteProduct(databasePath as String, Id: Int(myorder[indexPath.row][0])!)
-            UpdateTable()
-            
+            myorder = ConnectDB().checkOrder(databasePath as String)
+            MyOrderTableView.beginUpdates()
+            MyOrderTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Middle)
+            print("articulo borrado con id: \(myorder[indexPath.row][0])")
+            tableView.endUpdates()
             // handle delete (by removing the data from your array and updating the tableview)
         }
     }
@@ -102,7 +104,6 @@ class MyOrderViewController: UIViewController, UITabBarDelegate, UITableViewData
         let optionAlert = UIAlertController(title: "Enviar pedido", message: "Este pedido será enviado, revise bien cada platillo", preferredStyle: UIAlertControllerStyle.Alert)
         
         optionAlert.addAction(UIAlertAction(title: "Esperar", style: .Default, handler: { (action: UIAlertAction) in
-            ConnectDB().updateRestaurant(self.databasePath, idRestaurant: 0, idMesa: 0)
             print("Handle Cancel Logic here")
         }))
         

@@ -936,10 +936,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-HF-nZ3" customClass="FavCheckBox" customModule="Modi" customModuleProvider="target">
-                                <rect key="frame" x="16" y="173" width="18" height="18"/>
+                                <rect key="frame" x="13" y="168" width="26" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="18" id="nmN-LG-Mq4"/>
-                                    <constraint firstAttribute="height" constant="18" id="ybC-g3-OhJ"/>
+                                    <constraint firstAttribute="width" constant="26" id="nmN-LG-Mq4"/>
+                                    <constraint firstAttribute="height" constant="26" id="ybC-g3-OhJ"/>
                                 </constraints>
                                 <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1036,7 +1036,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="W3D-E2-gh9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                 <state key="normal" title="Ver horarios">
                                     <color key="titleColor" red="0.90196078430000004" green="0.2901960784" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1058,7 +1058,7 @@
                             <constraint firstItem="fKJ-45-Q6J" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="8" id="Ca5-Y5-Xvc"/>
                             <constraint firstItem="2ek-ek-TUx" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="8" id="F6e-Px-s3c"/>
                             <constraint firstItem="2ek-ek-TUx" firstAttribute="leading" secondItem="fKJ-45-Q6J" secondAttribute="trailing" constant="3" id="FzD-af-yHf"/>
-                            <constraint firstItem="vRL-Nx-q1y" firstAttribute="top" secondItem="NMd-HF-nZ3" secondAttribute="bottom" constant="9" id="GPe-1I-J5M"/>
+                            <constraint firstItem="vRL-Nx-q1y" firstAttribute="top" secondItem="NMd-HF-nZ3" secondAttribute="bottom" constant="6" id="GPe-1I-J5M"/>
                             <constraint firstItem="fKJ-45-Q6J" firstAttribute="leading" secondItem="nK8-QC-YWu" secondAttribute="trailing" constant="3" id="Jw7-vP-7xG"/>
                             <constraint firstItem="oQ1-eP-4EO" firstAttribute="top" secondItem="Exe-yz-kC4" secondAttribute="bottom" constant="11" id="Kjc-bs-MbD"/>
                             <constraint firstItem="65t-tr-R1X" firstAttribute="leading" secondItem="e1S-Mi-JBS" secondAttribute="leadingMargin" constant="-4" id="Lx8-kQ-Q8S"/>
@@ -1076,8 +1076,8 @@
                             <constraint firstItem="s8Z-Uy-Lx8" firstAttribute="top" secondItem="xdH-hg-ZUi" secondAttribute="bottom" constant="2" id="XB6-BR-nvn"/>
                             <constraint firstItem="xdH-hg-ZUi" firstAttribute="top" secondItem="ffI-qg-S45" secondAttribute="bottom" constant="-3" id="Xz1-0U-UNG"/>
                             <constraint firstItem="mA8-6z-bLI" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="5" id="aZU-hQ-f2D"/>
-                            <constraint firstItem="NMd-HF-nZ3" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="14" id="aqB-UE-As1"/>
-                            <constraint firstItem="nKE-kb-tMa" firstAttribute="leading" secondItem="NMd-HF-nZ3" secondAttribute="trailing" constant="7" id="gbk-2G-w8G"/>
+                            <constraint firstItem="NMd-HF-nZ3" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="9" id="aqB-UE-As1"/>
+                            <constraint firstItem="nKE-kb-tMa" firstAttribute="leading" secondItem="NMd-HF-nZ3" secondAttribute="trailing" constant="2" id="gbk-2G-w8G"/>
                             <constraint firstItem="bKZ-hc-iUd" firstAttribute="top" secondItem="2ak-Wm-GU3" secondAttribute="bottom" constant="12" id="hDG-UO-jrO"/>
                             <constraint firstItem="k8Q-dh-3oP" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="8" id="hwK-pP-ZxX"/>
                             <constraint firstItem="sBs-6n-5gL" firstAttribute="centerX" secondItem="vRL-Nx-q1y" secondAttribute="centerX" id="ik5-Wh-inY"/>
@@ -1088,7 +1088,7 @@
                             <constraint firstItem="sBs-6n-5gL" firstAttribute="centerX" secondItem="oQ1-eP-4EO" secondAttribute="centerX" id="oir-ik-1JW"/>
                             <constraint firstItem="nKE-kb-tMa" firstAttribute="top" secondItem="sBs-6n-5gL" secondAttribute="bottom" constant="12" id="orO-xC-qIM"/>
                             <constraint firstItem="oQ1-eP-4EO" firstAttribute="top" secondItem="Ica-df-b2e" secondAttribute="bottom" constant="11" id="pJB-1K-Eiy"/>
-                            <constraint firstItem="NMd-HF-nZ3" firstAttribute="leading" secondItem="e1S-Mi-JBS" secondAttribute="leadingMargin" constant="-4" id="pSX-bp-WDQ"/>
+                            <constraint firstItem="NMd-HF-nZ3" firstAttribute="leading" secondItem="e1S-Mi-JBS" secondAttribute="leadingMargin" constant="-7" id="pSX-bp-WDQ"/>
                             <constraint firstItem="sBs-6n-5gL" firstAttribute="top" secondItem="qoo-sI-hAh" secondAttribute="bottom" constant="-64" id="q1Z-Tn-uc0"/>
                             <constraint firstAttribute="trailing" secondItem="sBs-6n-5gL" secondAttribute="trailing" id="ram-kv-nuD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2ak-Wm-GU3" secondAttribute="trailing" constant="-4" id="teY-Zy-PPl"/>
@@ -2687,7 +2687,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLK-iD-zrq">
                                 <rect key="frame" x="0.0" y="-65" width="600" height="127"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hPu-nt-4ES">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usuario.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPu-nt-4ES">
                                         <rect key="frame" x="28" y="28" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="3ap-vf-hxE"/>
@@ -2886,6 +2886,7 @@
         <image name="scan" width="26" height="25"/>
         <image name="settings" width="25" height="25"/>
         <image name="twitter.png" width="60" height="60"/>
+        <image name="usuario.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="s7C-On-4kR"/>

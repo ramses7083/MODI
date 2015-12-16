@@ -159,7 +159,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
             token = datosSesion[6] as! String
             if token != "false" {
                 if datosSesion[1] as! String == "guest" { invitado = true }
-                progressBarDisplayer("Iniciando", true)
+                progressBarDisplayer("Iniciando sesión", true)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.performSegueWithIdentifier("LoginSegue", sender: self)
                 }
@@ -312,7 +312,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
 
     @IBAction func FacebookButton(sender: AnyObject) {
         print("Boton de facebook")
-        self.progressBarDisplayer("Iniciando sesión", true)
+        self.progressBarDisplayer("Esperando", true)
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         fbLoginManager .logInWithReadPermissions(["email"], handler: { (result, error) -> Void in
             if (error == nil){
@@ -332,12 +332,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 
                 if (error == nil){
+                    self.progressBarDisplayer("Esperando", true)
+                    self.progressBarDisplayer("Iniciando sesión", true)
                     print(result)
                     self.id = result["id"] as! String
                     self.nombre = result["name"] as! String
                     self.email = result["email"] as! String
                     print("El email de facebook es: \(self.email)")
-                    self.urlImage = "https://graph.facebook.com/\(self.id)/picture?width=44&height=44"
+                    self.urlImage = "https://graph.facebook.com/\(self.id)/picture?width=200&height=200"
                     print("\(self.id)\(self.nombre)\(self.urlImage)")
                     let connectDB = ConnectDB()
                     // REGISTRAR EN LA RED SOCIAL
@@ -389,17 +391,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                                         connectDB.addSession(self.databasePath, id: self.id, nombre: self.nombre, fecha: self.fechaActual, imagen: self.urlImage, tipo: "facebook", token:self.token)
                                                         print("Login: \(responseDictionary["token"]!.stringValue)")
                                                         // Guardar imagen
+                                                        /*
                                                         let url = NSURL(string: self.urlImage)
                                                         let data:NSData = NSData(contentsOfURL: url!)!
                                                         let image = UIImage(data: data)
                                                         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
                                                         let imagePath = paths.stringByAppendingPathComponent("ProfileImage.png" )
                                                         UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
+                                                        */
                                                         self.performSegueWithIdentifier("LoginSegue", sender: self)
                                                     } else {
                                                         self.progressBarDisplayer("Iniciando", false)
                                                         print("Error de login con Twitter")
-                                                        let optionAlert = UIAlertController(title: "Error", message: "Servidor de Twiiter no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
+                                                        let optionAlert = UIAlertController(title: "Error", message: "Servidor de Facebook no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                                         optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
                                                         }))
                                                         self.presentViewController(optionAlert, animated: true, completion: nil)
@@ -432,6 +436,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                     // FINALIZA EL INICIO CON LA RED SOCIAL
                 }
             })
+        } else {
+            print("Variable de facebook es Nil")
         }
     }
     
@@ -453,6 +459,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                 
                 // REGISTRAR EN LA RED SOCIAL
                 print("email:\(self.email)")
+                print("passphrase.\(self.email).00")
                 let result = ConnectDB().registerNewUser(self.email, password: "passphrase.\(self.email).00", email: self.email)
                 //Generar consulta en el servidor
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(result) { data, response, error in
@@ -501,17 +508,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                                     connectDB.addSession(self.databasePath, id: self.id, nombre: self.nombre, fecha: self.fechaActual, imagen: self.urlImage, tipo: "twitter", token:self.token)
                                                     print("Login: \(responseDictionary["token"]!.stringValue)")
                                                     // Guardar imagen
+                                                    /*
                                                     let url = NSURL(string: self.urlImage)
                                                     let data:NSData = NSData(contentsOfURL: url!)!
                                                     let image = UIImage(data: data)
                                                     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
                                                     let imagePath = paths.stringByAppendingPathComponent("ProfileImage.png" )
                                                     UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
+                                                    */
                                                     self.performSegueWithIdentifier("LoginSegue", sender: self)
                                                 } else {
                                                     self.progressBarDisplayer("Iniciando", false)
                                                     print("Error de login con Twitter")
-                                                    let optionAlert = UIAlertController(title: "Error", message: "Servidor de Twiiter no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
+                                                    let optionAlert = UIAlertController(title: "Error", message: "Servidor de Twitter no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                                     optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
                                                     }))
                                                     self.presentViewController(optionAlert, animated: true, completion: nil)
@@ -544,6 +553,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                 // FINALIZA EL INICIO CON LA RED SOCIAL
                 
             } else {
+                self.progressBarDisplayer("Iniciando sesión", false)
                 print("Error al iniciar sesion en Twitter: \(error)")
             }
         }
@@ -551,7 +561,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     
     //MARK: G+
     func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        self.progressBarDisplayer("Iniciando", true)
+        self.progressBarDisplayer("Esperando", false)
+        self.progressBarDisplayer("Iniciando Sesión", true)
         signIn = GPPSignIn.sharedInstance()
         self.nombre = signIn!.googlePlusUser.displayName
         self.id = signIn!.googlePlusUser.identifier
@@ -609,17 +620,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
                                             connectDB.addSession(self.databasePath, id: self.id, nombre: self.nombre, fecha: self.fechaActual, imagen: self.urlImage, tipo: "google", token:self.token)
                                             print("Login: \(responseDictionary["token"]!.stringValue)")
                                             // Guardar imagen
+                                            /*
                                             let url = NSURL(string: self.urlImage)
                                             let data:NSData = NSData(contentsOfURL: url!)!
                                             let image = UIImage(data: data)
                                             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
                                             let imagePath = paths.stringByAppendingPathComponent("ProfileImage.png" )
                                             UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
+                                            */
                                             self.performSegueWithIdentifier("LoginSegue", sender: self)
                                         } else {
                                             self.progressBarDisplayer("Iniciando", false)
-                                            print("Error de login con Twitter")
-                                            let optionAlert = UIAlertController(title: "Error", message: "Servidor no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
+                                            print("Error de login con Google")
+                                            let optionAlert = UIAlertController(title: "Error", message: "Servidor de Google no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                             optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
                                             }))
                                             self.presentViewController(optionAlert, animated: true, completion: nil)
@@ -653,7 +666,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     }
     @IBAction func InvitadoAction(sender: AnyObject) {
         invitado = true
-        progressBarDisplayer("Iniciando", true)
+        progressBarDisplayer("Iniciando sesión", true)
         let connectDB = ConnectDB()
         //connectDB.addSession(databasePath, id: 1, nombre: UsuarioTextField.text, fecha: "2013-06-02")
         connectDB.checkSession(databasePath as String)
@@ -716,7 +729,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
         
     }
     @IBAction func GoogleButton(sender: AnyObject) {
-        self.progressBarDisplayer("Iniciando sesión", true)
+        self.progressBarDisplayer("Esperando", true)
          signIn?.authenticate()
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

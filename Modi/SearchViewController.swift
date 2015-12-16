@@ -71,11 +71,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         FoodTableView.addSubview(refreshControl)
         let RefreshControlColor = UIColor(red: 230.0/255.0, green: 74.0/255.0, blue: 25.0/255.0, alpha: 1.0)
         refreshControl.tintColor = RefreshControlColor
-        let RefreshTitleText = "Actualizando restaurantes" as NSString
+        /*let RefreshTitleText = "Actualizando restaurantes" as NSString
         let attributedString = NSMutableAttributedString(string: RefreshTitleText as String)
         let firstAttributes = [NSForegroundColorAttributeName: RefreshControlColor, NSBackgroundColorAttributeName: UIColor.clearColor(), NSUnderlineStyleAttributeName: 0]
         attributedString.addAttributes(firstAttributes, range: RefreshTitleText.rangeOfString("Actualizando sensores"))
-        refreshControl.attributedTitle = attributedString
+        refreshControl.attributedTitle = attributedString*/
         refreshControl.addTarget(self, action: "UpdateTable:", forControlEvents: .ValueChanged)
     }
     func downloadData() {

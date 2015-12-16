@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let cellColor = UIColor(red: 236.0/255.0, green: 236.0/255.0, blue: 236.0/255.0, alpha: 1.0)
     var userName = ""
     var profileImage : UIImage!
+    var imgURL : NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +36,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let datosSesion : NSArray = connectDB.checkSession(self.databasePath as String)
         print("Nombre: \(datosSesion[1]) url: \(datosSesion[4])")
         userName = datosSesion[1] as! String
+        let imgName = datosSesion[4] as! String
         // Editar ImageView
-                
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-        let imagePath = paths.stringByAppendingPathComponent("ProfileImage.png" )
         
         //Revisar que la imagen se guardo
-        let checkImage = NSFileManager.defaultManager()
-        if (checkImage.fileExistsAtPath(imagePath)) {
-            print("Existe imagen")
+        if (imgName != "usuario.png") {
+            print("Hay url de imagen")
             // Imprimir la imagen de perfil
-            self.ProfileImageView.image = UIImage(contentsOfFile: imagePath)
-            profileImage = UIImage(contentsOfFile: imagePath)
+            imgURL = NSURL(string: datosSesion[4] as! String)
+            let request = ConnectDB().getImage(imgURL!)
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+                if error == nil {
+                    // Convert the downloaded data in to a UIImage object
+                    let image = UIImage(data: data!)
+                    // Update the cell
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.ProfileImageView.image = image
+                    })
+                }
+                else {
+                    print("Error: \(error!.localizedDescription)")
+                }
+            })
+            task.resume()
         } else {
-            print("NO existe imagen de redes")
+            print("NO hay url de imagen")
             self.ProfileImageView.image = UIImage(named: "usuario.png")
             profileImage = UIImage(named: "usuario.png")
         }
