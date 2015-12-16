@@ -20,8 +20,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var restaurantCategoria: String!
     @IBOutlet weak var RestaurantMapView: MKMapView!
     var locationManager: CLLocationManager!
-    var latitudeBetween: Double!
-    var longitudeBetween: Double!
+    var latitude: Double!
+    var longitude: Double!
+    var annotationArray :[MKAnnotation]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +40,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if (self.locationManager.location != nil){
             let location = self.locationManager.location
-            let latitude: Double = location!.coordinate.latitude
-            let longitude: Double = location!.coordinate.longitude
-            
+            latitude = location!.coordinate.latitude
+            longitude = location!.coordinate.longitude
+
             print("Latitud actual :: \(latitude)")
             print("Longitud actual :: \(longitude)")
             
@@ -50,6 +51,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
             let region:MKCoordinateRegion = MKCoordinateRegionMake((locationManager.location?.coordinate)!, theSpan)
             self.RestaurantMapView.setRegion(region, animated: true)
+            
+            var allLocations:[CLLocationCoordinate2D] = [
+                CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!),
+                CLLocationCoordinate2D(latitude: coordenadas[0], longitude: coordenadas[1] )
+            ]
+            
+            let poly:MKPolygon = MKPolygon(coordinates: &allLocations, count: allLocations.count)
+            
+            self.RestaurantMapView.setVisibleMapRect(poly.boundingMapRect, edgePadding: UIEdgeInsetsMake(140.0, 140.0, 140.0, 140.0), animated: true)
+        } else {
+            RestaurantMapView.showAnnotations(RestaurantMapView.annotations, animated: true)
         }
         self.RestaurantMapView.showsUserLocation = true
         self.RestaurantMapView.mapType = MKMapType.Standard
@@ -60,32 +72,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationName: "\(restaurantCalle)",
             discipline: "\(restaurantCategoria)",
             coordinate: CLLocationCoordinate2D(latitude: coordenadas[0], longitude: coordenadas[1]))
-            //coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
-        /*let location = self.locationManager.location
-        let latitude: Double = location!.coordinate.latitude
-        let longitude: Double = location!.coordinate.longitude
-        latitudeBetween = latitude - 19.2640774
-        longitudeBetween = longitude + 103.7119723*/
         
         RestaurantMapView.addAnnotation(artwork)
-    }
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    }
+ 
+    
+    func locationManager(manager: CLLocationManager, requestLocations locations: [CLLocation]) {
         let location = locations.last
         
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.RestaurantMapView.setRegion(region, animated: true)
-        
-        
-        // Add an annotation on Map View
-        /*var point: MKPointAnnotation! = MKPointAnnotation()
-        point.coordinate = location.coordinate
-        point.title = "Current Location"
-        point.subtitle = "sub title"
-        self.SearchMapView.addAnnotation(point)*/
-        
-        //stop updating location to save battery life
         locationManager.stopUpdatingLocation()
     }
     
@@ -155,3 +153,37 @@ class Artwork: NSObject, MKAnnotation {
         }
     }
 }
+class AnnotationWithoutSimbol: NSObject, MKAnnotation {
+    let title: String?
+    let locationName: String
+    let discipline: String
+    let coordinate: CLLocationCoordinate2D
+    
+    init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.locationName = locationName
+        self.discipline = discipline
+        self.coordinate = coordinate
+        
+        super.init()
+    }
+    
+    var subtitle: String? {
+        return locationName
+    }
+    
+    // pinColor for disciplines: Sculpture, Plaque, Mural, Monument, other
+    func pinColor() -> UIColor  {
+        switch discipline {
+        case "0", "4":
+            return UIColor.redColor()
+        case "1", "Monument":
+            return UIColor.purpleColor()
+        case "2", "Monument":
+            return UIColor.greenColor()
+        default:
+            return UIColor.greenColor()
+        }
+    }
+}
+

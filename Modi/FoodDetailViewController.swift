@@ -67,7 +67,7 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
             cantidadLabel.hidden = true
             especificationsLabel.hidden = true
         }
-
+        
         // Do any additional setup after loading the view.
         print(menu[idCategory]["articulos"][idSelected])
         //self.navigationItem.title = "Detalles"
@@ -107,7 +107,7 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
         } else {
             FoodImageView.image = imagen
         }
-        
+
         // Diseño de UsuarioTextField
         let UsuarioBorderBottom = CALayer()
         let UsuarioBorderLeft = CALayer()
@@ -131,6 +131,7 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
         especificationsTextField.leftViewMode = UITextFieldViewMode.Always
         especificationsTextField.addTarget(self, action: "textFieldShouldReturn:", forControlEvents: .EditingDidEndOnExit)
         especificationsTextField.autocorrectionType = UITextAutocorrectionType.No
+        
     }
 
     @IBAction func moreProduct(sender: AnyObject) {
@@ -169,6 +170,7 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
         //self.presentViewController(alert, animated: true, completion: nil)
         //NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("dismissAlert"), userInfo: nil, repeats: false)
     }
+    
     func dismissAlert()
     {
         // Dismiss the alert from here
@@ -207,9 +209,9 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
-    
 
-    /*
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -217,6 +219,6 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }

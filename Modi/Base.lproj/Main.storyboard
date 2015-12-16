@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Bariol_Bold.otf">
-            <string>Bariol-Bold</string>
-            <string>Bariol-Bold</string>
-            <string>Bariol-Bold</string>
-        </mutableArray>
         <mutableArray key="Bariol_Regular.otf">
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
@@ -74,6 +69,9 @@
             <string>SFUIDisplay-Regular</string>
         </mutableArray>
         <mutableArray key="SF-UI-Display-Semibold.otf">
+            <string>SFUIDisplay-Semibold</string>
+            <string>SFUIDisplay-Semibold</string>
+            <string>SFUIDisplay-Semibold</string>
             <string>SFUIDisplay-Semibold</string>
             <string>SFUIDisplay-Semibold</string>
             <string>SFUIDisplay-Semibold</string>
@@ -750,7 +748,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2P6-rU-73c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3909" y="-69"/>
+            <point key="canvasLocation" x="3912" y="-97"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="AGo-C5-Ndn">
@@ -1127,7 +1125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="he8-Ql-GOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320" y="-353"/>
+            <point key="canvasLocation" x="2354" y="-312"/>
         </scene>
         <!--Food Detail View Controller-->
         <scene sceneID="OK3-g1-iak">
@@ -1213,10 +1211,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cantidad:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukX-Tq-xeX">
-                                <rect key="frame" x="16" y="476" width="64" height="21"/>
+                                <rect key="frame" x="16" y="476" width="81" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="avv-qt-9re"/>
-                                    <constraint firstAttribute="width" constant="64" id="hsl-T9-WNH"/>
+                                    <constraint firstAttribute="width" constant="81" id="hsl-T9-WNH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1378,7 +1376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naL-oE-uMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4618" y="-79"/>
+            <point key="canvasLocation" x="4677" y="-85"/>
         </scene>
         <!--Perfil View Controller-->
         <scene sceneID="Mn1-Pv-8EH">
@@ -2096,7 +2094,7 @@
                                             <constraint firstAttribute="width" constant="233" id="0ND-wh-vSp"/>
                                             <constraint firstAttribute="height" constant="73" id="iDJ-sN-2oj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="47"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="44"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2203,7 +2201,7 @@
                                             <constraint firstAttribute="width" constant="271" id="Kgs-Yq-EKh"/>
                                             <constraint firstAttribute="height" constant="58" id="f1u-Xc-O0n"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="47"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="44"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2410,7 +2408,7 @@
                                             <constraint firstAttribute="width" constant="233" id="2gm-1R-Y1n"/>
                                             <constraint firstAttribute="height" constant="127" id="d4V-iY-zPB"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Bariol-Bold" family="Bariol" pointSize="47"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="44"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>

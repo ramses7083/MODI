@@ -526,6 +526,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let backItem = UIBarButtonItem()
             backItem.title = "Principal"
             navigationItem.backBarButtonItem = backItem
+            print("Esta por salir del segue ")
         }
     }
     

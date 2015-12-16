@@ -42,7 +42,6 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         progressBarDisplayer("Descargando", true)
         FavouriteCheckBox.isChecked = false
@@ -123,8 +122,9 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
                             self.rate4ImageView.image = UIImage(named: "rate+.png")
                             self.rate5ImageView.image = UIImage(named: "rate+.png")
                         }
-                        
+                        print("termino de cargar los datos")
                         //Descargar imagen
+                        
                         let urlString = "\(responseDictionary["cabecera"]!)"
                         let imgURL = NSURL(string: urlString)
                         let request: NSURLRequest = NSURLRequest(URL: imgURL!)
@@ -146,6 +146,7 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
                                 print("Error: \(error!.localizedDescription)")
                             }
                         })
+                        
                     }
                     
                     

@@ -150,6 +150,7 @@ class SelectedCategoryViewController: UIViewController, UITableViewDataSource, U
             let backItem = UIBarButtonItem()
             backItem.title = "Regresar"
             navigationItem.backBarButtonItem = backItem
+            print("va a salir de Selected Category")
         }
     }
 
