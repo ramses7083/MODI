@@ -353,6 +353,13 @@ class ConnectDB: NSObject {
         respuestaServidor = JSON(data: urlData!, options: [], error: nil)
         return respuestaServidor
     }
+    func getImage(imgURL: NSURL) -> NSURLRequest {
+        let request = NSMutableURLRequest(URL: imgURL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        return request
+    }
     func getRestaurantDetails(token: String, id : String) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string: "http://modi.mx/api/restaurants/\(id)/")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
         request.HTTPMethod = "GET"

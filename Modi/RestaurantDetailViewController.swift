@@ -127,9 +127,8 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
                         
                         let urlString = "\(responseDictionary["cabecera"]!)"
                         let imgURL = NSURL(string: urlString)
-                        let request: NSURLRequest = NSURLRequest(URL: imgURL!)
-                        let mainQueue = NSOperationQueue.mainQueue()
-                        NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                        let request = ConnectDB().getImage(imgURL!)
+                        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
                             if error == nil {
                                 // Convert the downloaded data in to a UIImage object
                                 let image = UIImage(data: data!)
@@ -146,6 +145,7 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
                                 print("Error: \(error!.localizedDescription)")
                             }
                         })
+                        task.resume()
                         
                     }
                     
