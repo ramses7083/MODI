@@ -18,10 +18,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desayuno.png" translatesAutoresizingMaskIntoConstraints="NO" id="ihq-3T-4bU">
-                    <rect key="frame" x="126" y="205" width="229" height="69"/>
+                    <rect key="frame" x="115" y="191" width="250" height="98"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="229" id="XAU-KM-cjv"/>
-                        <constraint firstAttribute="height" constant="69" id="qAC-uc-LUZ"/>
+                        <constraint firstAttribute="width" constant="250" id="XAU-KM-cjv"/>
+                        <constraint firstAttribute="height" constant="98" id="qAC-uc-LUZ"/>
                     </constraints>
                 </imageView>
             </subviews>
