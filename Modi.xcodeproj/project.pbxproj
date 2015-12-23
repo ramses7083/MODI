@@ -47,6 +47,15 @@
 		253CBBD01AF976DD008B5B2F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253CBBCE1AF976DD008B5B2F /* LaunchScreen.xib */; };
 		253CBBDC1AF976DD008B5B2F /* ModiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253CBBDB1AF976DD008B5B2F /* ModiTests.swift */; };
 		253CBBE91AF9794C008B5B2F /* perfilImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 253CBBE71AF9794C008B5B2F /* perfilImage.png */; };
+		254CC21E1C238F94006CEA1A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254CC21C1C238F94006CEA1A /* Interface.storyboard */; };
+		254CC2201C238F94006CEA1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254CC21F1C238F94006CEA1A /* Assets.xcassets */; };
+		254CC2271C238F94006CEA1A /* Modi Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 254CC2261C238F94006CEA1A /* Modi Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		254CC22E1C238F94006CEA1A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CC22D1C238F94006CEA1A /* InterfaceController.swift */; };
+		254CC2301C238F94006CEA1A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CC22F1C238F94006CEA1A /* ExtensionDelegate.swift */; };
+		254CC2321C238F94006CEA1A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CC2311C238F94006CEA1A /* NotificationController.swift */; };
+		254CC2341C238F94006CEA1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254CC2331C238F94006CEA1A /* Assets.xcassets */; };
+		254CC2381C238F94006CEA1A /* Modi Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 254CC21A1C238F94006CEA1A /* Modi Watch.app */; };
+		254CC2441C2391C1006CEA1A /* CategoriesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CC2431C2391C1006CEA1A /* CategoriesTable.swift */; };
 		254CDF9D1AFA808A00436098 /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CDF9C1AFA808A00436098 /* RestaurantCollectionViewCell.swift */; };
 		2557BB1C1B1E165700B970B2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2557BB131B1E165700B970B2 /* FMDatabase.m */; };
 		2557BB1D1B1E165700B970B2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2557BB151B1E165700B970B2 /* FMResultSet.m */; };
@@ -59,6 +68,10 @@
 		255A22511B28AFFF00E92EBB /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A22501B28AFFF00E92EBB /* RestaurantDetailViewController.swift */; };
 		255A22531B28BA8E00E92EBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A22521B28BA8E00E92EBB /* MapViewController.swift */; };
 		255A22551B28F01600E92EBB /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A22541B28F01600E92EBB /* VCMapView.swift */; };
+		25613BD61C2476F80095EAE5 /* RestaurantesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25613BD51C2476F80095EAE5 /* RestaurantesInterfaceController.swift */; };
+		25613BD81C2477180095EAE5 /* RestaurantesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25613BD71C2477180095EAE5 /* RestaurantesTable.swift */; };
+		25613BDA1C2481CE0095EAE5 /* SelectedRestaurantInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25613BD91C2481CE0095EAE5 /* SelectedRestaurantInterfaceController.swift */; };
+		25613BDC1C2485570095EAE5 /* MapInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25613BDB1C2485570095EAE5 /* MapInterfaceController.swift */; };
 		2561B9E51BAC64FA003B1F99 /* flecha-derecha.png in Resources */ = {isa = PBXBuildFile; fileRef = 2561B9E41BAC64FA003B1F99 /* flecha-derecha.png */; };
 		2561B9E71BAC68D5003B1F99 /* SelectedCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561B9E61BAC68D5003B1F99 /* SelectedCategoryViewController.swift */; };
 		2561B9E91BAC70BD003B1F99 /* icono-mas.png in Resources */ = {isa = PBXBuildFile; fileRef = 2561B9E81BAC70BD003B1F99 /* icono-mas.png */; };
@@ -69,6 +82,7 @@
 		258167B31B7D51FE00C4FB33 /* unchecked_checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 258167B11B7D51FE00C4FB33 /* unchecked_checkbox.png */; };
 		258167B71B7D707200C4FB33 /* locationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 258167B51B7D707200C4FB33 /* locationIcon.png */; };
 		258167B81B7D707200C4FB33 /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 258167B61B7D707200C4FB33 /* menuIcon.png */; };
+		2584CA741C246C1B00EDD731 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584CA731C246C1B00EDD731 /* SwiftyJSON.swift */; };
 		2590D6691BE00B4F008BF3A0 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2590D6681BE00B4F008BF3A0 /* NewUserViewController.swift */; };
 		25924F011C0A261000BE68F0 /* buscar-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 25924EFD1C0A261000BE68F0 /* buscar-02.png */; };
 		25924F021C0A261000BE68F0 /* home-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 25924EFE1C0A261000BE68F0 /* home-02.png */; };
@@ -107,7 +121,46 @@
 			remoteGlobalIDString = 253CBBBF1AF976DD008B5B2F;
 			remoteInfo = Modi;
 		};
+		254CC2281C238F94006CEA1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 253CBBB81AF976DD008B5B2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 254CC2251C238F94006CEA1A;
+			remoteInfo = "Modi Watch Extension";
+		};
+		254CC2361C238F94006CEA1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 253CBBB81AF976DD008B5B2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 254CC2191C238F94006CEA1A;
+			remoteInfo = "Modi Watch";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		254CC23E1C238F94006CEA1A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				254CC2271C238F94006CEA1A /* Modi Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		254CC2401C238F94006CEA1A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				254CC2381C238F94006CEA1A /* Modi Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		250C32311B0A5293004A10A5 /* usuario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usuario.png; sourceTree = "<group>"; };
@@ -155,6 +208,18 @@
 		253CBBDA1AF976DD008B5B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		253CBBDB1AF976DD008B5B2F /* ModiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModiTests.swift; sourceTree = "<group>"; };
 		253CBBE71AF9794C008B5B2F /* perfilImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfilImage.png; sourceTree = "<group>"; };
+		254CC21A1C238F94006CEA1A /* Modi Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Modi Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		254CC21D1C238F94006CEA1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		254CC21F1C238F94006CEA1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		254CC2211C238F94006CEA1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		254CC2261C238F94006CEA1A /* Modi Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Modi Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		254CC22C1C238F94006CEA1A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		254CC22D1C238F94006CEA1A /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		254CC22F1C238F94006CEA1A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		254CC2311C238F94006CEA1A /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		254CC2331C238F94006CEA1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		254CC2351C238F94006CEA1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		254CC2431C2391C1006CEA1A /* CategoriesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesTable.swift; path = ../CategoriesTable.swift; sourceTree = "<group>"; };
 		254CDF9C1AFA808A00436098 /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		2557BB101B1E165700B970B2 /* Modi-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Modi-Bridging-Header.h"; sourceTree = "<group>"; };
 		2557BB111B1E165700B970B2 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = fmdb/src/fmdb/FMDB.h; sourceTree = "<group>"; };
@@ -174,6 +239,10 @@
 		255A22501B28AFFF00E92EBB /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		255A22521B28BA8E00E92EBB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		255A22541B28F01600E92EBB /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapView.swift; sourceTree = "<group>"; };
+		25613BD51C2476F80095EAE5 /* RestaurantesInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantesInterfaceController.swift; sourceTree = "<group>"; };
+		25613BD71C2477180095EAE5 /* RestaurantesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantesTable.swift; sourceTree = "<group>"; };
+		25613BD91C2481CE0095EAE5 /* SelectedRestaurantInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantInterfaceController.swift; sourceTree = "<group>"; };
+		25613BDB1C2485570095EAE5 /* MapInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterfaceController.swift; sourceTree = "<group>"; };
 		2561B9E41BAC64FA003B1F99 /* flecha-derecha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flecha-derecha.png"; sourceTree = "<group>"; };
 		2561B9E61BAC68D5003B1F99 /* SelectedCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedCategoryViewController.swift; sourceTree = "<group>"; };
 		2561B9E81BAC70BD003B1F99 /* icono-mas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icono-mas.png"; path = "../Modi/icono-mas.png"; sourceTree = "<group>"; };
@@ -184,6 +253,7 @@
 		258167B11B7D51FE00C4FB33 /* unchecked_checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked_checkbox.png; sourceTree = "<group>"; };
 		258167B51B7D707200C4FB33 /* locationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationIcon.png; sourceTree = "<group>"; };
 		258167B61B7D707200C4FB33 /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
+		2584CA731C246C1B00EDD731 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		2590D6681BE00B4F008BF3A0 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		25924EFD1C0A261000BE68F0 /* buscar-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buscar-02.png"; sourceTree = "<group>"; };
 		25924EFE1C0A261000BE68F0 /* home-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-02.png"; sourceTree = "<group>"; };
@@ -258,6 +328,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		254CC2231C238F94006CEA1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -326,6 +403,8 @@
 				253CBBC21AF976DD008B5B2F /* Modi */,
 				253CBBE61AF97921008B5B2F /* Iconos */,
 				253CBBD81AF976DD008B5B2F /* ModiTests */,
+				254CC21B1C238F94006CEA1A /* Modi Watch */,
+				254CC22A1C238F94006CEA1A /* Modi Watch Extension */,
 				253CBBC11AF976DD008B5B2F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -335,6 +414,8 @@
 			children = (
 				253CBBC01AF976DD008B5B2F /* Modi.app */,
 				253CBBD51AF976DD008B5B2F /* ModiTests.xctest */,
+				254CC21A1C238F94006CEA1A /* Modi Watch.app */,
+				254CC2261C238F94006CEA1A /* Modi Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -428,6 +509,43 @@
 			path = Modi.xcodeproj;
 			sourceTree = "<group>";
 		};
+		254CC21B1C238F94006CEA1A /* Modi Watch */ = {
+			isa = PBXGroup;
+			children = (
+				254CC21C1C238F94006CEA1A /* Interface.storyboard */,
+				254CC21F1C238F94006CEA1A /* Assets.xcassets */,
+				254CC2211C238F94006CEA1A /* Info.plist */,
+			);
+			path = "Modi Watch";
+			sourceTree = "<group>";
+		};
+		254CC22A1C238F94006CEA1A /* Modi Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2584CA731C246C1B00EDD731 /* SwiftyJSON.swift */,
+				254CC22D1C238F94006CEA1A /* InterfaceController.swift */,
+				254CC2431C2391C1006CEA1A /* CategoriesTable.swift */,
+				25613BD51C2476F80095EAE5 /* RestaurantesInterfaceController.swift */,
+				25613BD71C2477180095EAE5 /* RestaurantesTable.swift */,
+				25613BD91C2481CE0095EAE5 /* SelectedRestaurantInterfaceController.swift */,
+				25613BDB1C2485570095EAE5 /* MapInterfaceController.swift */,
+				254CC22F1C238F94006CEA1A /* ExtensionDelegate.swift */,
+				254CC2311C238F94006CEA1A /* NotificationController.swift */,
+				254CC2331C238F94006CEA1A /* Assets.xcassets */,
+				254CC2351C238F94006CEA1A /* Info.plist */,
+				254CC22B1C238F94006CEA1A /* Supporting Files */,
+			);
+			path = "Modi Watch Extension";
+			sourceTree = "<group>";
+		};
+		254CC22B1C238F94006CEA1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				254CC22C1C238F94006CEA1A /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2557BB211B1E166700B970B2 /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,10 +632,12 @@
 				253CBBBD1AF976DD008B5B2F /* Frameworks */,
 				253CBBBE1AF976DD008B5B2F /* Resources */,
 				2534EEEB1B4710EF00BD6CA2 /* ShellScript */,
+				254CC2401C238F94006CEA1A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				254CC2371C238F94006CEA1A /* PBXTargetDependency */,
 			);
 			name = Modi;
 			productName = Modi;
@@ -542,6 +662,40 @@
 			productReference = 253CBBD51AF976DD008B5B2F /* ModiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		254CC2191C238F94006CEA1A /* Modi Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 254CC23F1C238F94006CEA1A /* Build configuration list for PBXNativeTarget "Modi Watch" */;
+			buildPhases = (
+				254CC2181C238F94006CEA1A /* Resources */,
+				254CC23E1C238F94006CEA1A /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				254CC2291C238F94006CEA1A /* PBXTargetDependency */,
+			);
+			name = "Modi Watch";
+			productName = "Modi Watch";
+			productReference = 254CC21A1C238F94006CEA1A /* Modi Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		254CC2251C238F94006CEA1A /* Modi Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 254CC23D1C238F94006CEA1A /* Build configuration list for PBXNativeTarget "Modi Watch Extension" */;
+			buildPhases = (
+				254CC2221C238F94006CEA1A /* Sources */,
+				254CC2231C238F94006CEA1A /* Frameworks */,
+				254CC2241C238F94006CEA1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Modi Watch Extension";
+			productName = "Modi Watch Extension";
+			productReference = 254CC2261C238F94006CEA1A /* Modi Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -549,7 +703,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = RASOFT;
 				TargetAttributes = {
@@ -560,6 +714,13 @@
 					253CBBD41AF976DD008B5B2F = {
 						CreatedOnToolsVersion = 6.3;
 						TestTargetID = 253CBBBF1AF976DD008B5B2F;
+					};
+					254CC2191C238F94006CEA1A = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 6VKPMZ9YA7;
+					};
+					254CC2251C238F94006CEA1A = {
+						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
@@ -578,6 +739,8 @@
 			targets = (
 				253CBBBF1AF976DD008B5B2F /* Modi */,
 				253CBBD41AF976DD008B5B2F /* ModiTests */,
+				254CC2191C238F94006CEA1A /* Modi Watch */,
+				254CC2251C238F94006CEA1A /* Modi Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -638,6 +801,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		254CC2181C238F94006CEA1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				254CC2201C238F94006CEA1A /* Assets.xcassets in Resources */,
+				254CC21E1C238F94006CEA1A /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		254CC2241C238F94006CEA1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				254CC2341C238F94006CEA1A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +892,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		254CC2221C238F94006CEA1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25613BD81C2477180095EAE5 /* RestaurantesTable.swift in Sources */,
+				254CC2321C238F94006CEA1A /* NotificationController.swift in Sources */,
+				254CC2301C238F94006CEA1A /* ExtensionDelegate.swift in Sources */,
+				25613BDC1C2485570095EAE5 /* MapInterfaceController.swift in Sources */,
+				25613BD61C2476F80095EAE5 /* RestaurantesInterfaceController.swift in Sources */,
+				254CC2441C2391C1006CEA1A /* CategoriesTable.swift in Sources */,
+				25613BDA1C2481CE0095EAE5 /* SelectedRestaurantInterfaceController.swift in Sources */,
+				2584CA741C246C1B00EDD731 /* SwiftyJSON.swift in Sources */,
+				254CC22E1C238F94006CEA1A /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -719,6 +915,16 @@
 			isa = PBXTargetDependency;
 			target = 253CBBBF1AF976DD008B5B2F /* Modi */;
 			targetProxy = 253CBBD61AF976DD008B5B2F /* PBXContainerItemProxy */;
+		};
+		254CC2291C238F94006CEA1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 254CC2251C238F94006CEA1A /* Modi Watch Extension */;
+			targetProxy = 254CC2281C238F94006CEA1A /* PBXContainerItemProxy */;
+		};
+		254CC2371C238F94006CEA1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 254CC2191C238F94006CEA1A /* Modi Watch */;
+			targetProxy = 254CC2361C238F94006CEA1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -737,6 +943,14 @@
 				253CBBCF1AF976DD008B5B2F /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		254CC21C1C238F94006CEA1A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				254CC21D1C238F94006CEA1A /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -780,10 +994,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos9.2;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -819,9 +1033,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos9.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -833,6 +1047,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Ramses7083/Documents/FacebookSDK,
@@ -857,6 +1072,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Ramses7083/Documents/FacebookSDK,
@@ -910,6 +1126,76 @@
 			};
 			name = Release;
 		};
+		254CC2391C238F94006CEA1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = YES;
+				IBSC_MODULE = Modi_Watch_Extension;
+				INFOPLIST_FILE = "Modi Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = rasoft.Modi.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		254CC23A1C238F94006CEA1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = YES;
+				IBSC_MODULE = Modi_Watch_Extension;
+				INFOPLIST_FILE = "Modi Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = rasoft.Modi.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		254CC23B1C238F94006CEA1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "Modi Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rasoft.Modi.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		254CC23C1C238F94006CEA1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "Modi Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rasoft.Modi.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -936,6 +1222,24 @@
 			buildConfigurations = (
 				253CBBE31AF976DD008B5B2F /* Debug */,
 				253CBBE41AF976DD008B5B2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		254CC23D1C238F94006CEA1A /* Build configuration list for PBXNativeTarget "Modi Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				254CC23B1C238F94006CEA1A /* Debug */,
+				254CC23C1C238F94006CEA1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		254CC23F1C238F94006CEA1A /* Build configuration list for PBXNativeTarget "Modi Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				254CC2391C238F94006CEA1A /* Debug */,
+				254CC23A1C238F94006CEA1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

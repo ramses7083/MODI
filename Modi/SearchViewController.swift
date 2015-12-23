@@ -127,7 +127,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             do {
                 self.profile = JSON(data: data!, options: [], error: nil)
                 print("success profile con JSON == \(self.profile)")
-                dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                     //     // update your UI and model objects here
                     let request = ConnectDB().getPopular(self.token)
                     let task2 = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
@@ -143,7 +143,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         do {
                             self.populares = JSON(data: data!, options: [], error: nil)
                             print("success popular con JSON == \(self.populares)")
-                            dispatch_async(dispatch_get_main_queue()) {
+                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                                 //     // update your UI and model objects here
                                 let request = ConnectDB().getCategories(self.token)
                                 let task3 = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
