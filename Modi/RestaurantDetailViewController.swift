@@ -210,7 +210,7 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
             AgregarFavoritoLabel.hidden = true
             rateButton.hidden = true
         }
-        
+
         // Diseñar los botones
         /*let screenSize: CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenSize.width
@@ -231,7 +231,7 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
     }
     
     @IBAction func MenuButton(sender: AnyObject) {
-        self.performSegueWithIdentifier("RestaurantSelectedSegue", sender: self)
+        self.performSegueWithIdentifier("MenuSegue", sender: self)
     }
 
     @IBAction func LocalizationButton(sender: AnyObject) {
@@ -278,7 +278,7 @@ class RestaurantDetailViewController: UIViewController, UIPopoverPresentationCon
         
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "RestaurantSelectedSegue") {
+        if(segue.identifier == "MenuSegue") {
             let vc : SelectedRestaurantViewController = segue.destinationViewController as! SelectedRestaurantViewController
             vc.RestautanteID = RestaurantID
             vc.imagen = RestaurantHeader
