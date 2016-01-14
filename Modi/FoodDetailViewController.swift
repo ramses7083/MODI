@@ -94,7 +94,7 @@ class FoodDetailViewController: UIViewController, UITextFieldDelegate {
                         // Store the image in to our cache
                         self.imageCache[urlString] = image
                         // Update the cell
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                        dispatch_async(dispatch_get_main_queue(), {
                             self.FoodImageView.image = image
                         })
                     }

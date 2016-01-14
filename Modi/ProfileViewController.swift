@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
+                    self.profileImage = image
                     // Update the cell
                     dispatch_async(dispatch_get_main_queue(), {
                         self.ProfileImageView.image = image
