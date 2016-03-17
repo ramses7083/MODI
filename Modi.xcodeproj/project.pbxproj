@@ -37,9 +37,6 @@
 		2534EEF21B47115500BD6CA2 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2534EEEE1B47115500BD6CA2 /* TwitterKitResources.bundle */; };
 		2534EEF31B47115500BD6CA2 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2534EEEF1B47115500BD6CA2 /* TwitterCore.framework */; };
 		2534EEF51B4740AA00BD6CA2 /* cerrarSesion.png in Resources */ = {isa = PBXBuildFile; fileRef = 2534EEF41B4740AA00BD6CA2 /* cerrarSesion.png */; };
-		2534EEF91B475AC200BD6CA2 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2534EEF61B475AC200BD6CA2 /* GoogleOpenSource.framework */; };
-		2534EEFA1B475AC200BD6CA2 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2534EEF71B475AC200BD6CA2 /* GooglePlus.bundle */; };
-		2534EEFB1B475AC200BD6CA2 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2534EEF81B475AC200BD6CA2 /* GooglePlus.framework */; };
 		253CBBC61AF976DD008B5B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253CBBC51AF976DD008B5B2F /* AppDelegate.swift */; };
 		253CBBC81AF976DD008B5B2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253CBBC71AF976DD008B5B2F /* ViewController.swift */; };
 		253CBBCB1AF976DD008B5B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 253CBBC91AF976DD008B5B2F /* Main.storyboard */; };
@@ -120,6 +117,14 @@
 		25B230B91BACDDC20056586E /* order.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B230B61BACDDC20056586E /* order.png */; };
 		25B230BA1BACDDC20056586E /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B230B71BACDDC20056586E /* profile.png */; };
 		25B230BB1BACDDC20056586E /* scan.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B230B81BACDDC20056586E /* scan.png */; };
+		25B601241C487EB800201F6C /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25B601221C487EB800201F6C /* GoogleSignIn.bundle */; };
+		25B601251C487EB800201F6C /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601231C487EB800201F6C /* GoogleSignIn.framework */; };
+		25B601271C487ED100201F6C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B601261C487ED100201F6C /* GoogleService-Info.plist */; };
+		25B601291C487EF500201F6C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601281C487EF500201F6C /* StoreKit.framework */; };
+		25B6012B1C487F1300201F6C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B6012A1C487F1300201F6C /* SystemConfiguration.framework */; };
+		25B6012D1C487F1C00201F6C /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B6012C1C487F1C00201F6C /* SafariServices.framework */; };
+		25B6012F1C487F2600201F6C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B6012E1C487F2600201F6C /* AdSupport.framework */; };
+		25B601311C487F2F00201F6C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601301C487F2F00201F6C /* libz.tbd */; };
 		25C806D71AF9AA9100BC78A5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C806D61AF9AA9100BC78A5 /* SearchViewController.swift */; };
 		25C806DB1AF9AAB100BC78A5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C806DA1AF9AAB100BC78A5 /* ProfileViewController.swift */; };
 		25DA58A81BFED1C00070528A /* rate-.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DA58A61BFED1C00070528A /* rate-.png */; };
@@ -214,9 +219,6 @@
 		2534EEEE1B47115500BD6CA2 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		2534EEEF1B47115500BD6CA2 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		2534EEF41B4740AA00BD6CA2 /* cerrarSesion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cerrarSesion.png; sourceTree = "<group>"; };
-		2534EEF61B475AC200BD6CA2 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../Downloads/google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
-		2534EEF71B475AC200BD6CA2 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<group>"; };
-		2534EEF81B475AC200BD6CA2 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
 		2534EEFC1B475B9800BD6CA2 /* Google-Bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Google-Bridging-header.h"; sourceTree = "<group>"; };
 		253CBBC01AF976DD008B5B2F /* Modi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253CBBC41AF976DD008B5B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -291,6 +293,14 @@
 		25B230B61BACDDC20056586E /* order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order.png; sourceTree = "<group>"; };
 		25B230B71BACDDC20056586E /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		25B230B81BACDDC20056586E /* scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan.png; sourceTree = "<group>"; };
+		25B601221C487EB800201F6C /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
+		25B601231C487EB800201F6C /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
+		25B601261C487ED100201F6C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		25B601281C487EF500201F6C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		25B6012A1C487F1300201F6C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		25B6012C1C487F1C00201F6C /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		25B6012E1C487F2600201F6C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		25B601301C487F2F00201F6C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		25C806D61AF9AA9100BC78A5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		25C806DA1AF9AAB100BC78A5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		25DA58A61BFED1C00070528A /* rate-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rate-.png"; sourceTree = "<group>"; };
@@ -331,9 +341,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25B601311C487F2F00201F6C /* libz.tbd in Frameworks */,
+				25B6012F1C487F2600201F6C /* AdSupport.framework in Frameworks */,
+				25B6012D1C487F1C00201F6C /* SafariServices.framework in Frameworks */,
+				25B6012B1C487F1300201F6C /* SystemConfiguration.framework in Frameworks */,
+				25B601291C487EF500201F6C /* StoreKit.framework in Frameworks */,
+				25B601251C487EB800201F6C /* GoogleSignIn.framework in Frameworks */,
 				2557BB251B1E6A0300B970B2 /* libsqlite3.dylib in Frameworks */,
-				2534EEFB1B475AC200BD6CA2 /* GooglePlus.framework in Frameworks */,
-				2534EEF91B475AC200BD6CA2 /* GoogleOpenSource.framework in Frameworks */,
 				2534EEF31B47115500BD6CA2 /* TwitterCore.framework in Frameworks */,
 				2534EEF11B47115500BD6CA2 /* TwitterKit.framework in Frameworks */,
 				2534EEE91B46E53200BD6CA2 /* FBSDKCoreKit.framework in Frameworks */,
@@ -411,9 +425,14 @@
 		253CBBB71AF976DD008B5B2F = {
 			isa = PBXGroup;
 			children = (
-				2534EEF61B475AC200BD6CA2 /* GoogleOpenSource.framework */,
-				2534EEF71B475AC200BD6CA2 /* GooglePlus.bundle */,
-				2534EEF81B475AC200BD6CA2 /* GooglePlus.framework */,
+				25B601301C487F2F00201F6C /* libz.tbd */,
+				25B6012E1C487F2600201F6C /* AdSupport.framework */,
+				25B6012C1C487F1C00201F6C /* SafariServices.framework */,
+				25B6012A1C487F1300201F6C /* SystemConfiguration.framework */,
+				25B601281C487EF500201F6C /* StoreKit.framework */,
+				25B601261C487ED100201F6C /* GoogleService-Info.plist */,
+				25B601221C487EB800201F6C /* GoogleSignIn.bundle */,
+				25B601231C487EB800201F6C /* GoogleSignIn.framework */,
 				2534EEEC1B47115500BD6CA2 /* Fabric.framework */,
 				2534EEED1B47115500BD6CA2 /* TwitterKit.framework */,
 				2534EEEE1B47115500BD6CA2 /* TwitterKitResources.bundle */,
@@ -792,6 +811,7 @@
 				2585D9881C2C7315004B3AE0 /* SF-UI-Text-RegularItalic.otf in Resources */,
 				2585D9891C2C7315004B3AE0 /* SF-UI-Text-Semibold.otf in Resources */,
 				2585D98A1C2C7315004B3AE0 /* SF-UI-Text-SemiboldItalic.otf in Resources */,
+				25B601241C487EB800201F6C /* GoogleSignIn.bundle in Resources */,
 				251099A41B7D087B001CFB57 /* Bariol_Regular.otf in Resources */,
 				2561B9E91BAC70BD003B1F99 /* icono-mas.png in Resources */,
 				251099A51B7D087B001CFB57 /* Bariol_Regular_Italic.otf in Resources */,
@@ -811,8 +831,8 @@
 				258167B71B7D707200C4FB33 /* locationIcon.png in Resources */,
 				25B230B91BACDDC20056586E /* order.png in Resources */,
 				258167B21B7D51FE00C4FB33 /* checked_checkbox.png in Resources */,
+				25B601271C487ED100201F6C /* GoogleService-Info.plist in Resources */,
 				2517197C1AFD6A980013584A /* Historial.png in Resources */,
-				2534EEFA1B475AC200BD6CA2 /* GooglePlus.bundle in Resources */,
 				251719761AFD33890013584A /* ModiIcon@2x.png in Resources */,
 				25AEA9E81C03FF5A0092433C /* icono-menos.png in Resources */,
 				2517197E1AFD6A980013584A /* Información.png in Resources */,

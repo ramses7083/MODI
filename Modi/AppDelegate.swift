@@ -13,7 +13,7 @@ import TwitterKit
 
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        GIDSignIn.sharedInstance().clientID = "220909684439-akoj0ilagevb31ampudo425suevherh9.apps.googleusercontent.com"
 
         Fabric.with([Twitter()])
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -58,9 +60,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    //G+
+    // Facebook
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation) || FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        return  FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    /*// Facebook alone
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }*/
+    // G+ & Facebook
+    func application(application: UIApplication,
+        openURL url: NSURL, options: [String: AnyObject]) -> Bool {
+            //return GIDSignIn.sharedInstance().handleURL(url,sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,annotation: options[UIApplicationOpenURLOptionsAnnotationKey] as? String)
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String, annotation: nil)  ||
+                GIDSignIn.sharedInstance().handleURL(url,
+                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
+                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey] as? String)
+    }
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+        withError error: NSError!) {
+            if (error == nil) {
+                // Perform any operations on signed in user here.
+                let userId = user.userID                  // For client-side use only!
+                let idToken = user.authentication.idToken // Safe to send to the server
+                let name = user.profile.name
+                let email = user.profile.email
+                // [START_EXCLUDE]
+                print("Datos de GooglePlus: UserId = \(userId), idToken = \(idToken), name = \(name), email = \(email)")
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    "ToggleAuthUINotification",
+                    object: nil,
+                    userInfo: ["statusText": "Signed in user:\n\(name)"])
+                // [END_EXCLUDE]
+            } else {
+                print("\(error.localizedDescription)")
+                // [START_EXCLUDE silent]
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    "ToggleAuthUINotification", object: nil, userInfo: nil)
+                // [END_EXCLUDE]
+            }
+    }
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+        withError error: NSError!) {
+            // Perform any operations when the user disconnects from app here.
+            // ...
     }
 }
 

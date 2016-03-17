@@ -18,7 +18,7 @@ import AssetsLibrary
 import CoreLocation
 import CoreMotion
 
-class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDelegate, UITextFieldDelegate {
+class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     var messageFrame = UIView()
     var activityIndicatorM = UIActivityIndicatorView()
     var strLabel = UILabel()
@@ -35,7 +35,6 @@ class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSign
     var token = ""
     var fechaActual : String!
     var databasePath = NSString()
-    var signIn : GPPSignIn?
     var id = ""
     var nombre = ""
     var email = ""
@@ -67,14 +66,9 @@ class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSign
             print("Logged in..")
         }
         
-        // Inicio de sesion de Google+
-        signIn = GPPSignIn.sharedInstance()
-        signIn?.shouldFetchGooglePlusUser = true
-        signIn?.shouldFetchGoogleUserEmail = true
-        signIn?.clientID = "220909684439-akoj0ilagevb31ampudo425suevherh9.apps.googleusercontent.com"
-        signIn?.scopes = [kGTLAuthScopePlusLogin]
-        signIn?.delegate = self
-        signIn?.signOut()
+        //Google + Delegate
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
         
         var prueba = Array(count:2, repeatedValue:Array(count:3, repeatedValue:String()))
         prueba[0][0]="hola"
@@ -315,14 +309,22 @@ class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSign
         print("Boton de facebook")
         self.progressBarDisplayer("Iniciando sesión", true)
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-        fbLoginManager .logInWithReadPermissions(["email"], handler: { (result, error) -> Void in
+        fbLoginManager .logInWithReadPermissions(["email"], fromViewController: self, handler: { (result, error) -> Void in
             if (error == nil){
-                let fbloginresult : FBSDKLoginManagerLoginResult = result
-                if(fbloginresult.grantedPermissions.contains("email"))
-                {
-                    self.getFBUserData()
-                    fbLoginManager.logOut()
+                //self.ActivityIndicator.startAnimating()
+                if result.isCancelled {
+                    
+                    print("El usuario Canceló")
+                    self.progressBarDisplayer("Iniciando", false)
+                } else {
+                    let fbloginresult : FBSDKLoginManagerLoginResult = result
+                    if(fbloginresult.grantedPermissions.contains("email"))
+                    {
+                        self.getFBUserData()
+                        fbLoginManager.logOut()
+                    }
                 }
+                
             }
         })
         
@@ -552,14 +554,45 @@ class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSign
     }
     
     //MARK: G+
-    func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        self.progressBarDisplayer("Descargando", true)
-        signIn = GPPSignIn.sharedInstance()
-        self.nombre = signIn!.googlePlusUser.displayName
-        self.id = signIn!.googlePlusUser.identifier
-        self.urlImage = signIn!.googlePlusUser.image.url
-        let email = signIn!.googlePlusUser.emails.first!.JSON!["value"]!
-        self.email = email as! String
+    // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+    // UIViewController.
+    
+    // Stop the UIActivityIndicatorView animation that was started when the user
+    // pressed the Sign In button
+    func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
+        //myActivityIndicator.stopAnimating()
+        //print(GIDSignIn.sharedInstance().currentUser.profile.name)
+    }
+    
+    // Present a view that prompts the user to sign in with Google
+    func signIn(signIn: GIDSignIn!,
+        presentViewController viewController: UIViewController!) {
+            self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    // Dismiss the "Sign in with Google" view
+    func signIn(signIn: GIDSignIn!,
+        dismissViewController viewController: UIViewController!) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+    }
+    //Google Sign In finished
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        if error == nil {
+            self.GoogleProfile()
+        }
+        else {
+            progressBarDisplayer("Descargando", false)
+            print(error)
+        }
+    }
+    func GoogleProfile() {
+        self.progressBarDisplayer("Esperando", false)
+        self.progressBarDisplayer("Iniciando Sesión", true)
+        self.nombre = GIDSignIn.sharedInstance().currentUser.profile.name
+        self.id = GIDSignIn.sharedInstance().currentUser.userID
+        self.email = GIDSignIn.sharedInstance().currentUser.profile.email
+        self.urlImage = "\(GIDSignIn.sharedInstance().currentUser.profile.imageURLWithDimension(100))"
         let connectDB = ConnectDB()
         print("GoogleUser: \(self.nombre) ID: \(self.id) email: \(self.email) Image: \(self.urlImage)")
         // REGISTRAR EN LA RED SOCIAL
@@ -611,17 +644,19 @@ class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSign
                                             connectDB.addSession(self.databasePath, id: self.id, nombre: self.nombre, fecha: self.fechaActual, imagen: self.urlImage, tipo: "google", token:self.token)
                                             print("Login: \(responseDictionary["token"]!.stringValue)")
                                             // Guardar imagen
+                                            /*
                                             let url = NSURL(string: self.urlImage)
                                             let data:NSData = NSData(contentsOfURL: url!)!
                                             let image = UIImage(data: data)
                                             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
                                             let imagePath = paths.stringByAppendingPathComponent("ProfileImage.png" )
                                             UIImagePNGRepresentation(image!)!.writeToFile(imagePath, atomically: true)
-                                            self.performSegueWithIdentifier("RegistroSegue", sender: self)
+                                            */
+                                            self.performSegueWithIdentifier("LoginSegue", sender: self)
                                         } else {
-                                            self.progressBarDisplayer("Descargando", false)
-                                            print("Error de login con Twitter")
-                                            let optionAlert = UIAlertController(title: "Error", message: "Servidor de Twiiter no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
+                                            self.progressBarDisplayer("Iniciando", false)
+                                            print("Error de login con Google")
+                                            let optionAlert = UIAlertController(title: "Error", message: "Servidor de Google no disponible para conexión", preferredStyle: UIAlertControllerStyle.Alert)
                                             optionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction) in
                                             }))
                                             self.presentViewController(optionAlert, animated: true, completion: nil)
@@ -658,8 +693,8 @@ class NewUserViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSign
         
     }
     @IBAction func GoogleButton(sender: AnyObject) {
-        self.progressBarDisplayer("Iniciando sesión", true)
-        signIn?.authenticate()
+        self.progressBarDisplayer("Esperando", true)
+        GIDSignIn.sharedInstance().signIn()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

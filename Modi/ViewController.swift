@@ -18,7 +18,7 @@ import AssetsLibrary
 import CoreLocation
 import CoreMotion
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDelegate, UITextFieldDelegate  {
+class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
     
     var messageFrame = UIView()
     var activityIndicatorM = UIActivityIndicatorView()
@@ -34,7 +34,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     var databasePath = NSString()
     var token = ""
     var fechaActual : String!
-    var signIn : GPPSignIn?
     var responseDictionary : NSDictionary!
     var id = ""
     var nombre = ""
@@ -66,14 +65,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
             print("Logged in..")
         }
         
-        // Inicio de sesion de Google+
-        signIn = GPPSignIn.sharedInstance()
-        signIn?.shouldFetchGooglePlusUser = true
-        signIn?.shouldFetchGoogleUserEmail = true
-        signIn?.clientID = "220909684439-akoj0ilagevb31ampudo425suevherh9.apps.googleusercontent.com"
-        signIn?.scopes = [kGTLAuthScopePlusLogin]
-        signIn?.delegate = self
-        signIn?.signOut()
+        //Google + Delegate
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
         
         var prueba = Array(count:2, repeatedValue:Array(count:3, repeatedValue:String()))
         prueba[0][0]="hola"
@@ -314,15 +308,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
         print("Boton de facebook")
         self.progressBarDisplayer("Esperando", true)
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-        fbLoginManager .logInWithReadPermissions(["email"], handler: { (result, error) -> Void in
+        fbLoginManager .logInWithReadPermissions(["email"], fromViewController: self, handler: { (result, error) -> Void in
             if (error == nil){
                 //self.ActivityIndicator.startAnimating()
-                let fbloginresult : FBSDKLoginManagerLoginResult = result
-                if(fbloginresult.grantedPermissions.contains("email"))
-                {
-                    self.getFBUserData()
-                    fbLoginManager.logOut()
+                if result.isCancelled {
+                    
+                    print("El usuario Canceló")
+                    self.progressBarDisplayer("Iniciando", false)
+                } else {
+                    let fbloginresult : FBSDKLoginManagerLoginResult = result
+                    if(fbloginresult.grantedPermissions.contains("email"))
+                    {
+                        self.getFBUserData()
+                        fbLoginManager.logOut()
+                    }
                 }
+                
             }
         })
         
@@ -560,15 +561,45 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     }
     
     //MARK: G+
-    func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
+    // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+    // UIViewController.
+    
+    // Stop the UIActivityIndicatorView animation that was started when the user
+    // pressed the Sign In button
+    func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
+        //myActivityIndicator.stopAnimating()
+        //print(GIDSignIn.sharedInstance().currentUser.profile.name)
+    }
+    
+    // Present a view that prompts the user to sign in with Google
+    func signIn(signIn: GIDSignIn!,
+        presentViewController viewController: UIViewController!) {
+            self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    // Dismiss the "Sign in with Google" view
+    func signIn(signIn: GIDSignIn!,
+        dismissViewController viewController: UIViewController!) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+    }
+    //Google Sign In finished
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        if error == nil {
+            self.GoogleProfile()
+        }
+        else {
+            progressBarDisplayer("Descargando", false)
+            print(error)
+        }
+    }
+    func GoogleProfile() {
         self.progressBarDisplayer("Esperando", false)
         self.progressBarDisplayer("Iniciando Sesión", true)
-        signIn = GPPSignIn.sharedInstance()
-        self.nombre = signIn!.googlePlusUser.displayName
-        self.id = signIn!.googlePlusUser.identifier
-        self.urlImage = signIn!.googlePlusUser.image.url
-        let email = signIn!.googlePlusUser.emails.first!.JSON!["value"]!
-        self.email = email as! String
+        self.nombre = GIDSignIn.sharedInstance().currentUser.profile.name
+        self.id = GIDSignIn.sharedInstance().currentUser.userID
+        self.email = GIDSignIn.sharedInstance().currentUser.profile.email
+        self.urlImage = "\(GIDSignIn.sharedInstance().currentUser.profile.imageURLWithDimension(100))"
         let connectDB = ConnectDB()
         print("GoogleUser: \(self.nombre) ID: \(self.id) email: \(self.email) Image: \(self.urlImage)")
         // REGISTRAR EN LA RED SOCIAL
@@ -730,7 +761,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GPPSignInDeleg
     }
     @IBAction func GoogleButton(sender: AnyObject) {
         self.progressBarDisplayer("Esperando", true)
-         signIn?.authenticate()
+        GIDSignIn.sharedInstance().signIn()
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)

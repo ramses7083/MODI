@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2695,9 +2695,8 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Bienvenido," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fl-hw-Z1g">
-                                        <rect key="frame" x="110" y="33" width="120" height="21"/>
+                                        <rect key="frame" x="110" y="33" width="470" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="Gs2-fX-dJM"/>
                                             <constraint firstAttribute="height" constant="21" id="wkz-sc-ULm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFUIText-Italic" family="SF UI Text" pointSize="21"/>
@@ -2719,6 +2718,7 @@
                                     <constraint firstAttribute="trailing" secondItem="1Qw-1r-sUm" secondAttribute="trailing" constant="20" id="BpZ-Ky-l2S"/>
                                     <constraint firstItem="1Qw-1r-sUm" firstAttribute="top" secondItem="0fl-hw-Z1g" secondAttribute="bottom" constant="7" id="D2a-rQ-WPj"/>
                                     <constraint firstItem="0fl-hw-Z1g" firstAttribute="leading" secondItem="hPu-nt-4ES" secondAttribute="trailing" constant="12" id="Jpm-rw-cfp"/>
+                                    <constraint firstAttribute="trailing" secondItem="0fl-hw-Z1g" secondAttribute="trailing" constant="20" id="OBn-S0-LaH"/>
                                     <constraint firstItem="0fl-hw-Z1g" firstAttribute="top" secondItem="sLK-iD-zrq" secondAttribute="top" constant="33" id="Qg3-l7-ljy"/>
                                     <constraint firstItem="hPu-nt-4ES" firstAttribute="top" secondItem="sLK-iD-zrq" secondAttribute="top" constant="28" id="Rdk-gj-3z5"/>
                                     <constraint firstItem="0fl-hw-Z1g" firstAttribute="top" secondItem="sLK-iD-zrq" secondAttribute="top" constant="33" id="UuR-l8-Lzb"/>
@@ -2876,7 +2876,7 @@
         <image name="chakoloco.jpg" width="960" height="649"/>
         <image name="facebook.png" width="60" height="60"/>
         <image name="flecha-derecha.png" width="151" height="151"/>
-        <image name="google.png" width="60" height="60"/>
+        <image name="google.png" width="18" height="18"/>
         <image name="icono-mas.png" width="151" height="151"/>
         <image name="icono-menos.png" width="151" height="151"/>
         <image name="menu" width="25" height="25"/>
